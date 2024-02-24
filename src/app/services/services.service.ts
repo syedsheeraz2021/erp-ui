@@ -35,6 +35,11 @@ export class ServicesService {
 
   // FOR LOGIN
   public login(data: any) {
+    // const headers = new HttpHeaders({
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    // });
     // console.log(dtaa)
     // console.log(data);
     // return this.http.post(environment.hostUrlNgrock + "/signin", data);
@@ -165,7 +170,8 @@ public save_password(data:any){
 
 
 public get_dynamic_sidebar(id:any){
-  return this.http.get(this.url+"/getDutiesByDesignationId/"+id);
+  return this.http.get(this.url+`/designation/${id}/duties`);
+  // return this.http.get(this.url+"/getDutiesByDesignationId/"+id);
 }
 //method for getting leave calender 
 
@@ -182,7 +188,7 @@ public getDesignationByLevelId(id:any){
   const headers = new HttpHeaders({
     'ngrok-skip-browser-warning': '69420'
     });
-  return this.http.get(this.url+"/getDesignationsByLevelId/"+id,{headers})
+  return this.http.get(this.url+"/api/v1/designation/level/"+id,{headers})
 
 }
 
@@ -191,7 +197,7 @@ public getDesignationByDestignationId(id:any){
   const headers = new HttpHeaders({
     'ngrok-skip-browser-warning': '69420'
     });
-  return this.http.get(this.url+"/getDesignations/"+id,{headers})
+  return this.http.get(this.url+"/api/v1/designation/"+id,{headers})
 
 }
 
@@ -199,7 +205,7 @@ public getDesignationByDestignationId(id:any){
 //method for adding job levels 
 public addJobLevel(data:any){
   console.log(data)
-  const baseurl=this.url+`/saveJobLevel?levelName=${data}`
+  const baseurl=this.url+`/api/v1/job-level?levelName=${data}`
   return this.http.post(baseurl,null)
 
 }
@@ -208,7 +214,7 @@ public addJobLevel(data:any){
 //METHOD FOR ADDING ADDITIONAL TASK 
 
 public add_additional_task(data:any){
-  return this.http.post(this.url+"/api/v1/save_designationTask",data,{ responseType: 'text' })
+  return this.http.post(this.url+"/api/v1/designation-task",data,{ responseType: 'text' })
 }
 
 //get All employee of task how assign  by taskId
@@ -217,7 +223,7 @@ public getEmployeeByTaskId(id:any){
   const headers = new HttpHeaders({
     'ngrok-skip-browser-warning': '69420'
     });
-  return this.http.get( environment.hostUrlNgrock+"/api/v1/findAllEmpByTaskId/"+id,{headers})
+  return this.http.get( environment.hostUrlNgrock+"/api/v1/employees/by-task/"+id,{headers})
 }
 
 
@@ -257,7 +263,7 @@ public endTheAdditionalTask(data:any){
     const headers = new HttpHeaders({
       'ngrok-skip-browser-warning': '69420'
     });
-    return this.http.get( environment.hostUrlNgrock+"/api/v1/all/departments",{headers})
+    return this.http.get( environment.hostUrlNgrock+"/api/v1/departments",{headers})
   }
 
   //get department by departmentId
@@ -265,7 +271,7 @@ public endTheAdditionalTask(data:any){
     const headers = new HttpHeaders({
       'ngrok-skip-browser-warning': '69420'
     });
-    return this.http.get( environment.hostUrlNgrock+"/api/v1/departmentId/"+id,{headers})
+    return this.http.get( environment.hostUrlNgrock+"/api/v1/departments/"+id,{headers})
   }
 
   
@@ -273,7 +279,7 @@ public endTheAdditionalTask(data:any){
 // add department
 public addDepartment(data:any){
   console.log(data)
-  return this.http.post(environment.hostUrlNgrock+`/api/v1/save/department`,data)
+  return this.http.post(environment.hostUrlNgrock+`/api/v1/departments`,data)
 }
 
   //update the department
@@ -281,12 +287,12 @@ public addDepartment(data:any){
 
   public upadteDepartment(id:any,data:any){
     console.log(id,data)
-    return this.http.put(environment.hostUrlNgrock+`/api/v1/update/department/by/id/${id}`,data)
+    return this.http.put(environment.hostUrlNgrock+`/api/v1/departments/${id}`,data)
   }
 
   //  holidays
   addHolidays(data:any){
-    return this.http.post(environment.hostUrlNgrock+ "/api/v1/calendar/add-holiday",data)
+    return this.http.post(environment.hostUrlNgrock+ "/api/v1/holidays",data)
   }
 
 
@@ -307,7 +313,7 @@ public addDepartment(data:any){
   // ONBOARDING Updating NEW EMPOYEE
   public updatePost(formData: any,email:string) {
     return this.http.put(
-      environment.hostUrlNgrock + `/api/v1/personal-info/update/email/${email}`,
+      environment.hostUrlNgrock + `/api/v1/personal-infos/update/email/${email}`,
       formData
     );
   }
@@ -321,7 +327,7 @@ public addDepartment(data:any){
       'Content-Type': 'application/json'
     });
 
-    return this.http.put(environment.hostUrlNgrock + `/updateDesignation`, data, { headers });
+    return this.http.put(environment.hostUrlNgrock + `/api/v1/update-designation`, data, { headers });
   }
 
 
@@ -331,7 +337,7 @@ public addDepartment(data:any){
       'ngrok-skip-browser-warning': '69420'
     });
     return this.http.get(
-      `${environment.hostUrlNgrock}/api/v1/getActive_designationTask/${ID}`,{headers}
+      `${environment.hostUrlNgrock}/api/v1/active-designation-task/${ID}`,{headers}
     );
   }
 
@@ -347,7 +353,7 @@ public update_leave_approver(id:any,data:any){
       'ngrok-skip-browser-warning': '69420'
     });
     return this.http.get(
-      environment.hostUrlNgrock + "/api/v1/personal-info/find/all",{headers}
+      environment.hostUrlNgrock + "/api/v1/personal-infos",{headers}
     );
 
 
@@ -361,7 +367,7 @@ public update_leave_approver(id:any,data:any){
       'ngrok-skip-browser-warning': '69420'
     });
     return this.http.get(
-      environment.hostUrlNgrock + "/api/v1/find-all/personal-info/active",{headers}
+      environment.hostUrlNgrock + "/api/v1/personal-infos/active",{headers}
     );
 
 
@@ -376,7 +382,7 @@ public update_leave_approver(id:any,data:any){
       'ngrok-skip-browser-warning': '69420'
     });
     return this.http.get(
-      `${environment.hostUrlNgrock}/api/v1/personal-info/email/${email}`,{headers}
+      `${environment.hostUrlNgrock}/api/v1/personal-infos/email/${email}`,{headers}
     );
   }
   // ONBOARDING GET EMPLOYEE BY ID
@@ -385,7 +391,7 @@ public update_leave_approver(id:any,data:any){
       'ngrok-skip-browser-warning': '69420'
     });
     return this.http.get(
-      `${environment.hostUrlNgrock}/api/v1/personal-info/employeeId/${ID}`,{headers}
+      `${environment.hostUrlNgrock}/api/v1/personal-infos/employeeId/${ID}`,{headers}
     );
   }
 
@@ -446,7 +452,7 @@ public getAllShift(){
   // ONBOARDING DELETE EMPLOYEE
   public deleteEmployee(email: string, FormData) {
     return this.http.put(
-      `${environment.hostUrlNgrock}/api/v1/personal-info/delete/${email}`,
+      `${environment.hostUrlNgrock}/api/v1/personal-infos/delete/${email}`,
       FormData
     );
   }
@@ -485,7 +491,7 @@ public get_all__job_levels(){
       'ngrok-skip-browser-warning': '69420'
     })
   };
-  return this.http.get(environment.hostUrlNgrock + "/getAllJobLevel",httpOptions)
+  return this.http.get(environment.hostUrlNgrock + "/api/v1/job-level",httpOptions)
 }
 
 //method for get all hioliday
@@ -496,7 +502,7 @@ public get_all_holidays(){
       'ngrok-skip-browser-warning': '69420'
     })
   };
-  return this.http.get(environment.hostUrlNgrock + "/api/v1/calendar/holidays",httpOptions)
+  return this.http.get(environment.hostUrlNgrock + "/api/v1/holidays",httpOptions)
 }
 
 
@@ -537,13 +543,13 @@ public get_all_designation(){
       'ngrok-skip-browser-warning': '69420'
     })
   };
-  return this.http.get(environment.hostUrlNgrock + "/getAllDesignations",httpOptions)
+  return this.http.get(environment.hostUrlNgrock + "/api/v1/designation",httpOptions)
 }
 
 
 
 public add_duties(data:any){
-  return this.http.post(environment.hostUrlNgrock + "/saveduties",data)
+  return this.http.post(environment.hostUrlNgrock + "/api/v1/duties",data)
 
 }
 
@@ -554,7 +560,7 @@ public get_all_duties(){
       'ngrok-skip-browser-warning': '69420'
     })
   };
-  return this.http.get(environment.hostUrlNgrock + "/loadAllDuties",httpOptions)
+  return this.http.get(environment.hostUrlNgrock + "/api/v1/duties",httpOptions)
 }
 
 
@@ -562,7 +568,7 @@ public get_all_duties(){
 
 
 public add_sub_duties(data:any){
-  return this.http.post(environment.hostUrlNgrock +"/save_subduties",data)
+  return this.http.post(environment.hostUrlNgrock +"/api/v1/sub-duties",data)
 }
 
 
@@ -573,7 +579,7 @@ public get_all_sub_duties(){
       'ngrok-skip-browser-warning': '69420'
     })
   };
-  return this.http.get(environment.hostUrlNgrock + "/getAllSubDuties",httpOptions)
+  return this.http.get(environment.hostUrlNgrock + "/api/v1/sub-duties",httpOptions)
 }
 public get_all_task(){
   const httpOptions = {
@@ -582,11 +588,11 @@ public get_all_task(){
       'ngrok-skip-browser-warning': '69420'
     })
   };
-  return this.http.get(environment.hostUrlNgrock + "/getAllTask",httpOptions)
+  return this.http.get(environment.hostUrlNgrock + "/api/v1/task",httpOptions)
 }
 
 public add_task(data:any){
-  return this.http.post(environment.hostUrlNgrock +"/save_task",data)
+  return this.http.post(environment.hostUrlNgrock +"/api/v1/task",data)
 }
 
 
@@ -718,7 +724,7 @@ public add_task(data:any){
     });
     // empId :number
     // let empId = 1002;
-    return this.http.get(`${this.url}/api/v1/personal-info/employeeId/${userId}`,{headers});
+    return this.http.get(`${this.url}/api/v1/personal-infos/employeeId/${userId}`,{headers});
   }
 
   //method for posting leave form
@@ -785,7 +791,7 @@ return this.http.get(this.url + "/api/v1/findByApproverEmpId/"+id ,{headers});
 
 
   public add_designation(data:any){
-    return this.http.post(this.url+"/savedesignation",data)
+    return this.http.post(this.url+"/api/v1/designation",data)
   }
 
 

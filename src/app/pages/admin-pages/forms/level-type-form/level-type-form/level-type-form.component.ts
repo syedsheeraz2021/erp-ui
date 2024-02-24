@@ -32,14 +32,21 @@ export class LevelTypeFormComponent implements OnInit {
       // Do something with the form data, e.g., send it to a server
       console.log(this.levelForm.value);
       let formData=this.levelForm.value
+      let sendData=formData.levelName
+      sendData = sendData.toUpperCase();
+
       // const formFileData = new FormData();
       // formFileData.append('levelName', JSON.stringify(this.levelForm.value))
-      this.api.addJobLevel(formData.levelName).subscribe((successResponse)=>{
+      this.api.addJobLevel(sendData).subscribe((successResponse)=>{
         console.log(successResponse)
-        this.toastr.info("Suceessfully Done")
+        this.toastr.info("Successfully Done")
         window.location.reload();
 
-      })
+      },((errorrResponse)=>{
+        // console.log(errorrResponse.error.text)
+        this.toastr.error(errorrResponse.error.text)
+        window.location.reload();
+      }))
 
 
     }

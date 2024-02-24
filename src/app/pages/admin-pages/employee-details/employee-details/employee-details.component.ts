@@ -22,7 +22,8 @@ export class EmployeeDetailsComponent implements OnInit {
 
     this.api.searchEmployeeById(id).subscribe((res) => {
       this.obj = res;
-      console.log(this.obj?.passportSizePhotoData)
+      console.log(this.obj)
+      // console.log(this.obj?.passportSizePhotoData)
       this.isAlterOpen();
     });
   }

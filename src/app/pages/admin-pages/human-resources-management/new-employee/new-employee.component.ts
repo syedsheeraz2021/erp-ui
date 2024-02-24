@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, FormArray, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Country, State, City } from 'country-state-city';
 import { distinctUntilChanged } from 'rxjs';
 import { DatePipe } from '@angular/common';
@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 
 import { ServicesService } from 'src/app/services/services.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 // export class newEmployee {
 //   public obj: any = {
@@ -36,8 +37,8 @@ public designationByLevelId:any
   public postForm!: FormGroup;
   public Countries: any[] = []
 public get_all_level:any;
-
-  constructor( private router:Router,  private apiService: ServicesService, private formBuilder: FormBuilder, private datePipe: DatePipe   ) {
+years: number[] = [];
+  constructor(  private toastr: ToastrService,private router:Router,  private apiService: ServicesService, private formBuilder: FormBuilder, private datePipe: DatePipe   ) {
     
     // const newDate= new Date;
     // this.minDate=this.datePipe.transform(newDate,'yyyy-MM-dd')
@@ -57,7 +58,9 @@ public get_all_level:any;
       case 'passportSizePhoto':
 
       if (file.size > 102400) { // 100KB in bytes
-        alert('File size must be less than 100 KB!');
+        // alert('File size must be less than 100 KB!');
+        this.toastr.error('File size must be less than 100 KB!')
+        event.target.value = '';
         return;
       }
       this.postForm?.patchValue({
@@ -70,7 +73,9 @@ public get_all_level:any;
         // break;
       case 'scannedCopyOfLincense':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+        event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -82,12 +87,15 @@ public get_all_level:any;
         break;
       case 'passportScannedCopy':
         if (file.type !== 'application/pdf') {
-          alert('Only PDF files are allowed!');
+          // alert('Only PDF files are allowed!');
+          this.toastr.error('Only PDF files are allowed!')
+        
           return;
         }
         // Check if the file size is greater than 2MB
         if (file.size > 2097152) { // 2MB in bytes
-          alert('File size must be less than 2 MB!');
+          // alert('File size must be less than 2 MB!');
+          this.toastr.error('File size must be less than 2 MB!')
           return;
         }
         this.postForm?.patchValue({
@@ -96,7 +104,9 @@ public get_all_level:any;
         break;
       case 'otherScannedIdProof':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -108,7 +118,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfRealtiveAddress':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -120,7 +132,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfRealtiveId':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -132,7 +146,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfCourseCompleted':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -144,7 +160,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfDiploma':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -156,7 +174,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfPostGraduation':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -168,7 +188,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfGraduation':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -180,7 +202,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfSeniorSecondary':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -192,7 +216,9 @@ public get_all_level:any;
         break;
       case 'ScannedCopyOfSecondary':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -205,7 +231,9 @@ public get_all_level:any;
         break;
       case 'SalaryScannedCopy':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -217,7 +245,9 @@ public get_all_level:any;
         break;
       case 'RecordSheet':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -229,7 +259,9 @@ public get_all_level:any;
         break;
       case 'CertificateUploadedForOutsource':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -242,7 +274,9 @@ public get_all_level:any;
       case 'PaidTrainingDocumentProof':
         console.log(this.postForm.patchValue)
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -254,17 +288,22 @@ public get_all_level:any;
         break;
 
       case 'VisaScannedCopyOfID':
+        console.log("inside visa Scanned")
         if (file.type !== 'application/pdf') {
-          alert('Only PDF files are allowed!');
+          // alert('Only PDF files are allowed!');
+          this.toastr.error('Only PDF files are allowed!')
+          event.target.value = '';
+          
           return;
         }
         // Check if the file size is greater than 2MB
         if (file.size > 2097152) { // 2MB in bytes
-          alert('File size must be less than 2 MB!');
+           this.toastr.error('Only PDF files are allowed!')
+           event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
-          passportScannedCopy: file
+          VisaScannedCopyOfID: file
         })
         // this.postForm?.patchValue({
         //   VisaScannedCopyOfID: file
@@ -272,7 +311,9 @@ public get_all_level:any;
         break;
       case 'ScanCopyOfAchivements':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -284,7 +325,9 @@ public get_all_level:any;
         break;
       case 'Declaration':
         if (file.size > 102400) { // 100KB in bytes
-          alert('File size must be less than 100 KB!');
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -361,6 +404,11 @@ public get_all_level:any;
   }
   
   ngOnInit() {
+
+    const currentYear = new Date().getFullYear();
+    for (let i = 1970; i <= currentYear; i++) {
+      this.years.push(i);
+    }
 
     this.apiService.getAllLocation().subscribe((successResponse)=>{
       this.locations=successResponse;
@@ -679,8 +727,10 @@ public get_all_level:any;
       postedLocation: '',
       // payscale
       basicAllowance: '',
-      houseRentAllowance: '',
-      houseRentAmount: '',
+      houseRentAllowance: [false] ,
+      // houseRentAllowance: '',
+      houseRentAmount: ['', this.allowanceAmountValidator('houseRentAllowance')],
+      // houseRentAmount: '',
       foodAllowance: '',
       foodAllowanceAmount: '',
       vehicleAllowance: '',
@@ -728,6 +778,17 @@ public get_all_level:any;
       onboardHrApprovalStatus:['pending']
     })
 
+  }
+
+  allowanceAmountValidator(allowanceControlName: string): any {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const checkboxValue = control?.parent?.get(allowanceControlName)?.value;
+      const amountValue = control.value;
+      if (checkboxValue && !amountValue) {
+        return { required: true };
+      }
+      return null;
+    };
   }
 
 
@@ -801,75 +862,6 @@ public next(){
   this.step=this.step+1
   console.log(this.step)
 }
-// next() {
-//   const currentStepControls = Object.entries(this.postForm.controls)
-//     .filter(([key, control]) => control.enabled)
-//     .reduce((acc, [key, control]) => {
-//       acc[key] = control;
-//       return acc;
-//     }, {});
-
-//   const areRequiredFieldsFilled = Object.values(currentStepControls)
-//     .filter((control: any) => control.errors?.required)
-//     .length === 0;
-
-//   const isVisaTypeValid = this.postForm.get('VisaType').valid;
-
-//   // Check if the step's required fields are filled and the form is valid
-//   const isStepValid = Object.values(currentStepControls)
-//     .filter((control: any) => control.errors)
-//     .length === 0;
-
-//   if (areRequiredFieldsFilled && this.postForm.valid && isVisaTypeValid && isStepValid) {
-//     this.step = this.step + 1;
-//     console.log(this.step);
-//   } else {
-//     console.log('Please fill in all required fields before proceeding.');
-//   }
-// }
-
-
-
-// next() {
-//   if (this.step === 1) {
-//     if (this.postForm.get('email').valid) {
-//       this.step = this.step + 1;
-//     } else {
-//       console.log('Please fill in all required fields before proceeding.');
-//     }
-//   } else if (this.step === 2) {
-//     if (this.postForm.get('VisaType').valid) {
-//       this.step = this.step + 1;
-//     } else {
-//       console.log('Please fill in all required fields before proceeding.');
-//     }
-//   }
-// }
-
-// next() {
-//   if (this.step == 1 && this.postForm.get('email').valid) {
-//     this.step += 1;
-//     console.log(this.step);
-//   } 
-  
-//    else {
-//     console.log('Please fill in all required fields before proceeding.');
-//   }
-// }
-
-
-
-// next() {
-//   if (this.step === 1 && this.postForm.get('email').valid) {
-//     this.step = this.step + 1;
-//   } else if (this.step === 2 && this.postForm.get('VisaType').valid) {
-//     this.step = this.step + 1;
-//   } else {
-//     console.log('Please fill in all required fields before proceeding.');
-//   }
-// }
-
-
 
 
 
@@ -882,7 +874,7 @@ public previous(){
     // this.step=this.step + 1;
     // console.log(this.postForm.value);
     
-    console.log(this.postForm.value.passportSizePhoto)
+    console.log(this.postForm.value.VisaScannedCopyOfID)
     if (this.postForm.valid) {
       // let role={
       //   role: [this.postForm.value.role]
@@ -1139,16 +1131,7 @@ public previous(){
       
       const formFileData = new FormData();
       formFileData.append('PersonalInfo', JSON.stringify(formDetail))
-      // formFileData.append("education", JSON.stringify(educations))
-      // formFileData.append("bgcheck", JSON.stringify(bgcheck))
-      // formFileData.append("visainfo", JSON.stringify(visainfo))
-      // formFileData.append("relative", JSON.stringify(relative))
-      // formFileData.append("license", JSON.stringify(license))
-      // formFileData.append("training", JSON.stringify(training))
-      // formFileData.append("oldEmployee", JSON.stringify(oldEmployee))
-      // formFileData.append("professionalQualifications", JSON.stringify(professionalQualifications));
-      // formFileData.append("formDetail", JSON.stringify(formDetail));
-      // formFileData.append('SignupRequest',JSON.stringify(role));
+    
       formFileData.append('CurrentDesignationandAdditionalTask',JSON.stringify(currentDesignation))
       // console
       formFileData.append('passportSizePhoto', this.postForm.value.passportSizePhoto);
@@ -1189,16 +1172,22 @@ public previous(){
       })
 
       this.apiService.addPost(formFileData).subscribe((successResponse: any) => {
-        console.log(successResponse);
+        // console.log(successResponse);
         this.postForm.reset();
         this.router.navigate(['/user-profile']);
-        alert("successfully Post OnBoard")
+        // alert("Successfully Posted OnBoard");
+
+        this.toastr.info("Successfully Posted OnBoard");
              }, (errorResponse: any) => {
-        console.log(errorResponse.error.message)
-        alert(errorResponse.error.message)
+        // console.log(errorResponse.error.message)
+        // alert(errorResponse.error.message)
+        this.toastr.error(errorResponse.error.message);
       })
     }else{
-      alert("field is required")
+      // alert("field is required")
+      this.toastr.error("Field is required");
+
+
     }
   }
 
@@ -1207,12 +1196,13 @@ public previous(){
     this.levelId=id;
     console.log(id)
     this.apiService.getDesignationByLevelId(id).subscribe((successResponse)=>{
-      console.log(successResponse)
+      // console.log(successResponse)
       this.designationByLevelId=successResponse
     },
     (errorResponse) =>{
-      console.log(errorResponse.error.text)
-      alert(errorResponse.error.text)
+      // console.log(errorResponse.error.text)
+      // alert(errorResponse.error.text)
+      this.toastr.error(errorResponse.error.text);
     })
   }
 }

@@ -12,7 +12,7 @@ export class AddSubDutiesComponent implements OnInit {
   myForm: FormGroup;
 getData:any
 tableData:any
-  constructor(private formBuilder: FormBuilder,private api:ServicesService, private toastr:ToastrService) {}
+  constructor( private formBuilder: FormBuilder,private api:ServicesService, private toastr:ToastrService) {}
 
   ngOnInit() {
 
@@ -52,6 +52,7 @@ this.api.get_all_sub_duties().subscribe((successResponse)=>{
     }
     ,(error)=>
     {
+      this.toastr.info( error.error.message,"Something Went Wrong")
       alert(error.error.message);
     })
 

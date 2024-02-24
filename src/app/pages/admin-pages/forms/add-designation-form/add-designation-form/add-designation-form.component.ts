@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
@@ -50,7 +51,7 @@ export class AddDesignationFormComponent implements OnInit {
   myForm: FormGroup;
 getData:any;
 tableData:any;
-  constructor(private formBuilder: FormBuilder,private service :ServicesService,private router:Router) {}
+  constructor( private toastr: ToastrService,private formBuilder: FormBuilder,private service :ServicesService,private router:Router) {}
 
   ngOnInit() {
 
@@ -85,17 +86,20 @@ this.service.get_all_designation().subscribe((successResponse)=>{
     console.log(formData)
     this.service.add_designation(formData).subscribe((successResponse)=>{
       console.log(successResponse)
+      this.toastr.success('SuccessFully  Designation Added');
       window.location.reload();
     },
     (error)=>{
-      alert(error.error.message)
+      // alert(error.error.message)
+      window.location.reload();
+      this.toastr.error('Something Went Wrong');
     })
   }
 
 
   editData(id:any){
     console.log(id,"jskljdklsj")
-    this.router.navigate([`forms/update-designation/${id}`])
+    // this.router.navigate([`forms/update-designation/${id}`])
 
 
 

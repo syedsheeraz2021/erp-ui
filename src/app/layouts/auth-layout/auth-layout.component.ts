@@ -10,6 +10,7 @@ import { ServicesService } from 'src/app/services/services.service';
 export class AuthLayoutComponent implements OnInit, OnDestroy {
   test: Date = new Date();
   public isCollapsed = true;
+  isLoggedIn = true; 
 
   currentRoute: string;
 
@@ -18,11 +19,16 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
       // Use this.router.url to get the current URL
       this.currentRoute = this.router.url;
       console.log(this.currentRoute);
+      if(this.currentRoute=="/login" || this.currentRoute=="/register"|| this.currentRoute=="/save-password" ){
+        console.log("inside")
+        this.isLoggedIn = false;
+      }
     });
   }
 
   ngOnInit() {
     var html = document.getElementsByTagName("html")[0];
+    console.log(html);
     html.classList.add("auth-layout");
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-default");

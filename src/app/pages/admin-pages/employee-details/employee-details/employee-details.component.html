@@ -41,16 +41,17 @@
             <div class="col-8">
               <h3 class="mb-0">My account</h3>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-4 text-right h-50" >
               <button
-                class="btn btn-sm btn-primary"
+                class="btn btn-lg btn-primary"
                 (click)="navigate(obj.email)"
               >
-                Edit
+              {{  obj?.onboardHrApprovalStatus == "pending" ? 'Approved' : 'Edit' }}
               </button>
             </div>
           </div>
         </div>
+        
 <!-- 
         <div
           class="tabs d-flex justify-content-between align-items-center px-4 py-3 empNav"
@@ -602,9 +603,9 @@
                         </label>
 
                         <a
-                          [href]="getImage(obj.license.licenseCopyData)"
+                          [href]="getImage(obj.license?.licenseCopyData)"
                           class="form-control form-control-alternative btn doc-btn"
-                          download="LicenseScan.pdf"
+                          download="LicenseScan"
                           >download</a
                         >
                       </div>
@@ -835,7 +836,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.relative.rcontactno"
                           type="text"
                           [readonly]="isReadOnly"
@@ -852,7 +853,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative img img-fluid"
-                          placeholder="Job level"
+                         
                           [value]="obj.relative.relationship"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1012,7 +1013,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="
                             obj.educations[0].seniorSecondaryMarksOrGrade
                           "
@@ -1031,7 +1032,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.educations[0].seniorSecondaryYear"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1065,7 +1066,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.educations[0].graduationIssuingAuthority"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1096,7 +1097,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.educations[0].graduationYear"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1130,7 +1131,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="
                             obj.educations[0].postGraduationIssuingAuthority
                           "
@@ -1163,7 +1164,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.educations[0].postGraduationYear"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1197,7 +1198,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.educations[0].diplomaIssuingAuthority"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1228,7 +1229,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.educations[0].diplomaYear"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1510,7 +1511,7 @@
                         <input
                           id="input-job-position"
                           class="form-control form-control-alternative"
-                          placeholder="Job position"
+                         
                           [value]="obj.oldEmployee[0].dateFrom"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1527,7 +1528,7 @@
                         <input
                           id="input-job-designation"
                           class="form-control form-control-alternative"
-                          placeholder="Job designation"
+                        
                           [value]="obj.oldEmployee[0].dateTo"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1544,7 +1545,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.oldEmployee[0].description"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1559,7 +1560,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.oldEmployee[0].companyAddress"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1576,7 +1577,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.oldEmployee[0].previousManagerName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1591,7 +1592,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.oldEmployee[0].previousManagerPhoneCode"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1608,7 +1609,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.oldEmployee[0].previousManagerContact"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1623,7 +1624,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.oldEmployee[0].previousHRName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1640,7 +1641,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.oldEmployee[0].previousHRPhoneCode"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1655,7 +1656,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.oldEmployee[0].previousHRContact"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1672,7 +1673,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.oldEmployee[0].lastWithdrawnSalary"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1707,7 +1708,7 @@
                           <input
                             id="input-job-level"
                             class="form-control form-control-alternative"
-                            placeholder="Job level"
+                           
                             [value]="data.achievementRewardsName"
                             type="text"
                             [readonly]="isReadOnly"
@@ -1806,7 +1807,7 @@
                         <input
                           id="input-job-designation"
                           class="form-control form-control-alternative"
-                          placeholder="Job designation"
+
                           [value]="obj.bgcheck.externalName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1823,7 +1824,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.bgcheck.externalCompanyName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1838,7 +1839,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.bgcheck.externalPhoneCode"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1855,7 +1856,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.bgcheck.externalPhoneNo"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1870,7 +1871,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.bgcheck.managerApproval"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1887,7 +1888,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.bgcheck.managerName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1902,7 +1903,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.bgcheck.remark"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1919,7 +1920,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.bgcheck.addressVerified"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1934,7 +1935,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.bgcheck.previousEmploymentStatusVerified"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1951,7 +1952,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="
                             obj.bgcheck
                               .previousDesignationAndResponsibilityVerified
@@ -1969,7 +1970,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.bgcheck.idProofDocumentVerified"
                           type="text"
                           [readonly]="isReadOnly"
@@ -1986,7 +1987,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.bgcheck.educationalQualificationVerified"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2001,7 +2002,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.bgcheck.criminalRecords"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2018,7 +2019,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="
                             obj.bgcheck.punishmentForImprisonmentApproval
                           "
@@ -2151,7 +2152,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.training[0].trainingEndDate"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2166,7 +2167,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.training[0].trainerFeedback"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2183,7 +2184,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.training[0].trainerName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2198,7 +2199,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.training[0].trainerPost"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2215,7 +2216,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.training[0].trainerDepartment"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2230,7 +2231,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.training[0].trainerPhoneCode"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2247,7 +2248,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.training[0].trainerPhoneNo"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2378,7 +2379,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].postedLocation"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2393,7 +2394,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].basicAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2410,7 +2411,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].houseRentAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2425,7 +2426,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].houseRentAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2442,7 +2443,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].foodAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2457,7 +2458,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].foodAllowanceAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2474,7 +2475,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].vehicleAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2489,7 +2490,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].vehicleAllowanceAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2506,7 +2507,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].uniformAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2521,7 +2522,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].uniformAllowanceAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2538,7 +2539,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].travellingAllowances"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2553,7 +2554,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].travellingAllowancesAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2570,7 +2571,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                          
                           [value]="obj.jobDetails[0].educationalAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2585,7 +2586,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                      
                           [value]="obj.jobDetails[0].educationalAllowanceAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2602,7 +2603,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                          
                           [value]="obj.jobDetails[0].otherAllowance"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2617,7 +2618,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                      
                           [value]="obj.jobDetails[0].otherAllowanceAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2634,7 +2635,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                      
                           [value]="obj.jobDetails[0].vehicle"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2649,7 +2650,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.jobDetails[0].vehicleNumber"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2666,7 +2667,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].vehicleModelName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2681,7 +2682,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.jobDetails[0].vehicleModelYear"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2698,7 +2699,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                       
                           [value]="obj.jobDetails[0].isVehicleNewOrPreowned"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2713,7 +2714,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                        
                           [value]="obj.jobDetails[0].cashOrChipFacility"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2730,7 +2731,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                        
                           [value]="obj.jobDetails[0].chipNumber"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2745,7 +2746,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].accommodationYesOrNo"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2762,7 +2763,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                        
                           [value]="obj.jobDetails[0].isShredOrSeparate"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2777,7 +2778,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                      
                           [value]="obj.jobDetails[0].isExeutiveOrLabourFacility"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2794,7 +2795,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                        
                           [value]="
                             obj.jobDetails[0].electricityAllocationYesOrNo
                           "
@@ -2811,7 +2812,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="
                             obj.jobDetails[0].electricityAllocationAmount
                           "
@@ -2830,7 +2831,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                        
                           [value]="obj.jobDetails[0].rentAllocationYesOrNo"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2845,7 +2846,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].rentAllocationAmount"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2862,7 +2863,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                          
                           [value]="obj.jobDetails[0].mobileIssuedOrNot"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2877,7 +2878,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.jobDetails[0].simIssuedOrNot"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2894,7 +2895,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                          
                           [value]="obj.jobDetails[0].flightFacilities"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2909,7 +2910,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                          
                           [value]="obj.jobDetails[0].howMuchTime"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2926,7 +2927,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="
                             obj.jobDetails[0].familyTicketsAlsoProvidedOrNot
                           "
@@ -2943,7 +2944,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                       
                           [value]="obj.jobDetails[0].othersAccomandation"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2960,7 +2961,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                          
                           [value]="obj.jobDetails[0].healthInsuranceCoverage"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2975,7 +2976,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                      
                           [value]="obj.jobDetails[0].maximumAmountGiven"
                           type="text"
                           [readonly]="isReadOnly"
@@ -2992,7 +2993,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="
                             obj.jobDetails[0].familyHealthInsuranceGivenOrNot
                           "
@@ -3009,7 +3010,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.jobDetails[0].familyHealthInsuranceType"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3026,7 +3027,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.jobDetails[0].punchingMachineYesOrNo"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3041,7 +3042,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.jobDetails[0].joiningDate"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3058,7 +3059,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                     
                           [value]="obj.department.departmentName"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3073,7 +3074,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.jobDetails[0].referredBy"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3090,7 +3091,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                      
                           [value]="obj.jobDetails[0].byWhom"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3121,7 +3122,7 @@
                         <input
                           id="input-job-level"
                           class="form-control form-control-alternative"
-                          placeholder="Job level"
+                         
                           [value]="obj.degreeAttestation"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3136,7 +3137,7 @@
                         <input
                           id="input-department"
                           class="form-control form-control-alternative"
-                          placeholder="Department"
+                         
                           [value]="obj.emiratesID"
                           type="text"
                           [readonly]="isReadOnly"
@@ -3152,6 +3153,8 @@
           </div>
         </div>
       </div>
+     
+     
     </div>
   </div>
 </div>

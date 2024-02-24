@@ -29,7 +29,7 @@ export let AdminRoutes: RouteInfo[] = [
   {
     id: 2,
     isModuleOpen: false,
-    path: "/human-resources-management",
+    path: "/human-resources-management/new-employee",
     title: "Human Resources Management",
     icon: "fa-solid fa-people-group",
     color: "#3883B8",
@@ -37,10 +37,10 @@ export let AdminRoutes: RouteInfo[] = [
     child: [
       { name: "Onboarding", path: "/human-resources-management/new-employee" },
       // { name: "Onboarding", path: "/human-resources-management/new-employee" },
-      { name: "Attendance Management", path: "" },
-      { name: "Performance Management", path: "" },
-      { name: "Payroll Processing", path: "" },
-      { name: "Leave Management", path: "" },
+      // { name: "Attendance Management", path: "" },
+      // { name: "Performance Management", path: "" },
+      // { name: "Payroll Processing", path: "" },
+      // { name: "Leave Management", path: "" },
     ],
   },
   {
@@ -150,18 +150,18 @@ export let AdminRoutes: RouteInfo[] = [
     color: "#3883B8",
     class: "",
     child: [
+      { name: "Add Location", path: "/forms/add-location" },
+      { name: "Add Level ", path: "/forms/level-type" },
+      { name: "Add Designation", path: "/forms/add-designation" },
+      { name: "Add Duties", path: "/forms/add-duties" },
+      { name: "Add Sub Duties", path: "/forms/add-sub-duties" },
+      { name: "Add Tasks", path: "/forms/add-tasks" },
       { name: "Add Academic ", path: "/forms/add-academic-calendar" },
       { name: "Leave Type ", path: "/forms/type-of-leave" },
       { name: "Add Department ", path: "/forms/add-department" },
       { name: "Add Shift ", path: "/forms/add-shift" },
       // { name: "Onboarding", path: "/human-resources-management/new-employee" },
-      { name: "Level Type", path: "/forms/level-type" },
-      { name: "Add Designation", path: "/forms/add-designation" },
-      { name: "Add Duties", path: "/forms/add-duties" },
-      { name: "Add Sub Duties", path: "/forms/add-sub-duties" },
-      { name: "Add Tasks", path: "/forms/add-tasks" },
       { name: "Add Additional Task", path: "/forms/add-additional-task" },
-      { name: "Add Location", path: "/forms/add-location" },
       { name: "Add Leave Approver", path: "/forms/add-leave-approver" },
     ],
 
@@ -725,5 +725,9 @@ if (localDataString) {
       return mainModule;
     });
   }
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 
 }

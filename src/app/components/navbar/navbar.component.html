@@ -69,36 +69,53 @@
           <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">Notifications</h6>
           </div>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          <div *ngFor="let data of getAllEmp">
+          <a  routerLinkActive="active" [routerLink]= "['/employee-details/'+data.employeeId]" class="dropdown-item">
+            
+            <span  >
+                <div *ngIf="data?.onboardHrApprovalStatus === 'pending' &&  data?.filledForm== true">
+                  <i class="ni ni-single-02 "></i>
+                    <span class="ms-2" style="margin-left: 5px !important;">{{data?.firstName + " " + data?.middleName + " "+ data?.lastName }} </span> 
+                    <span> New Approval </span>
+                </div>
+            </span>
+        </a>
+      </div>
+        
+          <!-- <a  *ngFor="let data of getAllEmp" routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>
-              <div>
-                <span class="">Mohd Rahil Khan</span> 
-                <span> needs background approval</span>
-              </div>
-              <div>
-                <span>Due : 2023-04-12</span>
-                <button class="btn">Action</button> 
-              </div>
+         
+              <div >
+                <div *ngIf="data.onboardHrApprovalStatus === 'pending'">
+                    <span>{{data.firstName}} Mohd Rahil Khan</span> 
+                    <span> needs background approval</span>
+                </div>
+            </div>
+            
+             
             </span>
-          </a>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          </a> -->
+          <!-- <a routerLinkActive="active"  class="dropdown-item">
             <i class="ni ni-settings-gear-65"></i>
             <span>Settings</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          <a routerLinkActive="active"  class="dropdown-item">
             <i class="ni ni-calendar-grid-58"></i>
             <span>Activity</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          <a routerLinkActive="active"  class="dropdown-item">
             <i class="ni ni-support-16"></i>
             <span>Support</span>
-          </a>
-          <div class="dropdown-divider"></div>
+          </a> -->
+
+
+
+          <!-- <div class="dropdown-divider"></div>
           <a routerLink="/notifications" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>See All</span>
-          </a>
+          </a> -->
         </div>
       </li>
     </ul>

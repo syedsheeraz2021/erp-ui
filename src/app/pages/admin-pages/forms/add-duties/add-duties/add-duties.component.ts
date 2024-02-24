@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AddDutiesComponent implements OnInit {
   myForm: FormGroup;
   tableData:any;
 getDesignationId:any
-  constructor(private formBuilder: FormBuilder,private api :ServicesService) {}
+  constructor(private toastr: ToastrService,private formBuilder: FormBuilder,private api :ServicesService) {}
 
   ngOnInit() {
 
@@ -43,8 +44,11 @@ getDesignationId:any
     this.api.add_duties(formData).subscribe((successResponse)=>{
       console.log(successResponse)
       window.location.reload();
+      this.toastr.success('SuccessFully  Duty Added');
 
-    })
+    },((errorResponse)=>{
+      this.toastr.error('Something Went Wrong');
+    }))
     console.log(formData);
   }
 

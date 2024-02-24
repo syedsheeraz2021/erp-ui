@@ -10,12 +10,15 @@ import { Subject, BehaviorSubject } from "rxjs";
 })
 export class AllEmployeesComponent implements OnInit {
     response: any = new Subject();
+    button:string = "Approved"
     public isLoading = new BehaviorSubject(true);
     constructor(private EmpService: ServicesService, private router: Router) {}
 
     getEmployees() {
       this.isLoading.next(true);
       this.EmpService.getAllEmployees().subscribe((res) => {
+        console.log(res)
+        
         this.isLoading.next(false);
         this.response.next(res);
       });

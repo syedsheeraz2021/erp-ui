@@ -165,9 +165,10 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Designation</th>
+                    <th scope="col">Hr Approval Status</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Operation</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -177,12 +178,12 @@
                   >
                     <th scope="row">{{ employee.employeeId }}</th>
                     <td>
-                      {{ employee.firstName + " " + employee.lastName }}
+                      {{ employee.firstName + " " +employee.middleName +" "+employee.lastName }}
                     </td>
                     <td>
                       {{ employee.email }}
                     </td>
-                    <td>{{ employee.jobDetails.jobPostDesignation }}</td>
+                    <td>{{ employee.onboardHrApprovalStatus}}</td>
                     <td *ngIf="employee.status == 'Active'">
                       <i class="fas fa-circle text-info mr-3"></i>
                     </td>
@@ -206,6 +207,14 @@
                         Activate
                       </button>
                     </td> -->
+                    
+                      <td>
+                        <button class="btn btn-primary" style="width: 100px !important ; text-align: center;">
+                            {{  employee.onboardHrApprovalStatus == "pending" ? 'Approved' : 'Edit' }}
+                        </button>
+                    </td>
+                    
+                    
                   </tr>
                 </tbody>
               </table>

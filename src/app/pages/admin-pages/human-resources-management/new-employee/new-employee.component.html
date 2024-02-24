@@ -207,7 +207,7 @@
                         placeholder="Passport Size Photo"
                       />
 
-                      <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                      <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                       </div>
                       
                     </div>
@@ -236,7 +236,7 @@
                         (change)="uploadFile($event)"
                         accept=".pdf"
                       />
-                      <span class="text-danger"> <small>PDF SIZE 2 MB ONLY</small>   </span>
+                      <span class="text-secondry"> <small>PDF SIZE 2 MB ONLY</small>   </span>
   
                       </div>
                       
@@ -312,9 +312,9 @@
                         name="scannedCopyOfLincense"
                         formControlName="scannedCopyOfLincense"
                         (change)="uploadFile($event)"
-                        placeholder="John"
+                        
                       />
-                      <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                      <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
   
                       </div>
                       
@@ -487,7 +487,7 @@
                         (change)="uploadFile($event)"
                         accept=".pdf"
                       />
-                      <span class="text-danger"> <small>PDF SIZE 2 MB ONLY</small>   </span>
+                      <span class="text-secondry"> <small>PDF SIZE 2 MB ONLY</small>   </span>
                     </div>
                   </div>
                   <!-- <div class="col-lg-6">
@@ -544,13 +544,19 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Year </label>
-                    <input
+                    <!-- <input
                       type="text"
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       placeholder="Year"
                       formControlName="secondaryyear"
-                    />
+                    /> -->
+                    <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                    formControlName="secondaryyear">
+                      <option value="" disabled selected>Select Year</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
+                    
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -564,7 +570,7 @@
                       name="ScannedCopyOfSecondary"
                       (change)="uploadFile($event)"
                     />
-                    <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
 
                     </div>
                     
@@ -608,13 +614,17 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Year </label>
-                      <input
+                      <!-- <input
                       type="text"
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       placeholder="Year"
-                      formControlName="seniorSecondaryYear"
-                    />
+                      formControlName="seniorSecondaryYear" /> -->
+                      <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                      formControlName="seniorSecondaryYear">
+                        <option value="" disabled selected>Select Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -628,7 +638,7 @@
                       name="ScannedCopyOfSeniorSecondary"
                       (change)="uploadFile($event)"
                     />
-                    <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                     </div>
                     
                   </div>
@@ -670,13 +680,18 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Year </label>
-                      <input
+                      <!-- <input
                       type="text"
                       class="form-control"
                       id="floatingTextInput1"
                       placeholder="Year"
                       formControlName="graduationYear"
-                    />
+                    /> -->
+                    <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                    formControlName="graduationYear">
+                      <option value="" disabled selected>Select Year</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -690,7 +705,7 @@
                       name="ScannedCopyOfGraduation"
                       (change)="uploadFile($event)"
                     />
-                    <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                     </div>
                     
                   </div>
@@ -735,13 +750,19 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Year </label>
-                      <input
+                      <!-- <input
                       type="text"
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       placeholder="Year"
                       formControlName="postGraduationYear"
-                    />
+                    /> -->
+
+                    <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                    formControlName="postGraduationYear">
+                      <option value="" disabled selected>Select Year</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -755,7 +776,7 @@
                       name="ScannedCopyOfPostGraduation"
                       (change)="uploadFile($event)"
                     />
-                    <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                     </div>
                     
                   </div>
@@ -1236,7 +1257,7 @@
                       name="RecordSheet"
                       placeholder="Record Sheet"
                     />
-                    <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                   </div>
                     </div>
                     
@@ -1324,7 +1345,7 @@
                         name="Declaration"
                         placeholder=""
                       />
-                      <span class="text-danger"> <small>image size 100 kb only</small>   </span>
+                      <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                     </div>
                     </div>
                   </div>
@@ -1503,7 +1524,7 @@
                   </div>
                   
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label">
@@ -1520,7 +1541,7 @@
                   </div>
                   
                   
-                </div>
+                </div> -->
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -1613,7 +1634,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> House Rent Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="houseRentAmount"
@@ -1645,7 +1666,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Food Allowance Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="foodAllowanceAmount"
@@ -1677,7 +1698,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Vehicle Allowance Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="vehicleAllowanceAmount"
@@ -1709,7 +1730,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Uniform Allowance Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="uniformAllowanceAmount"
@@ -1741,7 +1762,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Travelling Allowance Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="travellingAllowancesAmount"
@@ -1773,7 +1794,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Education Allowance Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="educationalAllowanceAmount"
@@ -1805,7 +1826,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Other Allowance Amount </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="otherAllowanceAmount"
@@ -1942,7 +1963,7 @@
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Cash Amount</label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="cashAmount"
@@ -2063,7 +2084,7 @@
                         Electricity Allocation Amount</label
                       >
                       <input
-                        type="text"
+                        type="number" 
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="electricityAllocationAmount"
@@ -2225,7 +2246,7 @@
                       Health Insurance Amount</label
                     >
                     <input
-                      type="text"
+                      type="number"
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       formControlName="maximumAmountGiven"
@@ -2427,23 +2448,7 @@
                 </div>
                 <!-- your-component.component.html -->
 <div class="row">
-  <!-- Role Selection -->
-  <!-- <div class="col-lg-6">
-    <div class="form-group">
-      <label for="role" class="form-control-label">Role</label>
-      <select class="form-control form-control-alternative" id="role" formControlName="role">
-        <option selected disabled value="">Select Role</option>
-        <option value="admin">Admin</option>
-        <option value="manager">Manager</option>
-        <option value="subadmin">Sub Admin</option>
-        <option value="hr">HR</option>
-        <option value="employee">Employee</option>
-      </select>
-      <div *ngIf="postForm.get('role').errors?.required && postForm.get('role').touched" class="text-danger">
-        Role is required.
-      </div>
-    </div>
-  </div> -->
+
 
   <!-- Department Selection -->
   <div class="col-lg-6">

@@ -25,7 +25,7 @@
                         <div class="form-group">
                           <label for="namePrefix" class="form-control-label">Prefix</label>
                           <input type="text" name="namePrefix" id="namePrefix"
-                            class="form-control form-control-alternative" formControlName="namePrefix" readonly>
+                            class="form-control form-control-alternative" formControlName="namePrefix" >
 
 
                         </div>
@@ -34,7 +34,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-last-name">First Name</label>
                           <input type="text" id="input-last-name" class="form-control form-control-alternative"
-                            placeholder=" " formControlName="firstName" readonly>
+                            placeholder=" " formControlName="firstName" >
                         </div>
                       </div>
                     </div>
@@ -43,14 +43,14 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-father-name">Middle Name</label>
                           <input type="text" id="input-father-name" class="form-control form-control-alternative"
-                            placeholder="" value="" formControlName="middleName" readonly>
+                            placeholder="" value="" formControlName="middleName" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-age">Last Name</label>
                           <input type="text" id="input-age" class="form-control form-control-alternative"
-                            placeholder="23" formControlName="lastName" readonly>
+                            placeholder="23" formControlName="lastName" >
                         </div>
                       </div>
                     </div>
@@ -60,7 +60,7 @@
                           <label for="code">Code</label>
 
                           <input type="text" name="code" id="code" class="form-control form-control-alternative"
-                            formControlName="phoneCode" readonly>
+                            formControlName="phoneCode" >
 
 
                         </div>
@@ -70,7 +70,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-email">Contact</label>
                           <input type="number" id="input-email" class="form-control form-control-alternative"
-                            placeholder="" formControlName="personalContactNo" readonly>
+                            placeholder="" formControlName="personalContactNo" >
                         </div>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                           <label for="maritalStatus" class="form-control-label">Martial Status</label>
 
                           <input type="text" name="maritalStatus" id="maritalStatus"
-                            class="form-control form-control-alternative" formControlName="maritalStatus" readonly>
+                            class="form-control form-control-alternative" formControlName="maritalStatus" >
 
 
                         </div>
@@ -90,7 +90,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-email">Email </label>
                           <input type="email" id="input-email" class="form-control form-control-alternative"
-                            placeholder="" formControlName="email" readonly>
+                            placeholder="" formControlName="email" >
                         </div>
 
                       </div>
@@ -100,7 +100,7 @@
                         <div class="form-group">
                           <label for="">Citizenship</label>
                           <input type="text" name="citizenship" id="" class="form-control form-control-alternative"
-                            formControlName="citizenship" readonly>
+                            formControlName="citizenship" >
 
 
                         </div>
@@ -112,7 +112,7 @@
 
                           <input type="text" name="passportIssuingCountry" id=""
                             class="form-control form-control-alternative" formControlName="passportIssuingCountry"
-                            readonly>
+                            >
 
 
                         </div>
@@ -124,7 +124,7 @@
                           <label class="form-control-label" for="input-email">Date Of Birth </label>
                           <input type="text" (change)="getAge($event)" min="" [max]="currentDate"
                             class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="dateOfBirth" placeholder="Date Of Birth" readonly />
+                            formControlName="dateOfBirth" placeholder="Date Of Birth"  />
                         </div>
 
                       </div>
@@ -132,7 +132,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-email">Age </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="age" placeholder="Age" readonly />
+                            formControlName="age" placeholder="Age"  />
                         </div>
                       </div>
                     </div>
@@ -142,7 +142,7 @@
                           <label class="form-control-label" for="input-email">Passport Size Photo </label>
                           <input type="file" name="passportSizePhoto" (change)="uploadFile($event)"
                             class="form-control form-control-alternative" id="floatingTextInput1"
-                            placeholder="Passport Size Photo" readonly />
+                            placeholder="Passport Size Photo" title="File Uploaded" />
                         </div>
 
                       </div>
@@ -150,7 +150,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-email">Passport Number </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput2"
-                            formControlName="passportNumber" placeholder="Passport Number" readonly />
+                            formControlName="passportNumber" placeholder="Passport Number"  />
                         </div>
                       </div>
                     </div>
@@ -177,7 +177,7 @@
                         <div class="form-group">
                           <label class="form-control-label" for="input-email">Driving License</label>
                           <input type="text" name="drivinglicense" class="form-control form-control-alternative"
-                            formControlName="drivinglicense" id="" readonly>
+                            formControlName="drivinglicense" id="" >
 
                         </div>
 
@@ -186,7 +186,7 @@
                         <div class="form-group">
                           <label for="drivinglicense" class="form-control-label">Type Of Lincense</label>
                           <input type="text" name="licenseType" class="form-control form-control-alternative"
-                            formControlName="licenseType" readonly>
+                            formControlName="licenseType" >
 
                         </div>
                       </div>
@@ -195,9 +195,9 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-email"> Scanned Copy Lincense</label>
-                          <input type="file" class="form-control form-control-lg" id="floatingTextInput1 "
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1 "
                             name="scannedCopyOfLincense" formControlName="scannedCopyOfLincense"
-                            (change)="uploadFile($event)" placeholder="John" readonly />
+                            (change)="uploadFile($event)"   />
 
                         </div>
 
@@ -205,8 +205,8 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="">Personal Vehicle </label>
-                          <input type="text" name="ownvehicle" class="form-control form-control-lg"
-                            formControlName="ownvehicle" id="" readonly>
+                          <input type="text" name="ownvehicle" class="form-control form-control-alternative"
+                            formControlName="ownvehicle" id="" >
 
                         </div>
                       </div>
@@ -218,15 +218,15 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="">Type Of Visa </label>
-                          <input type="text" name="VisaType" class="form-control form-control-lg"
-                            formControlName="VisaType" readonly>
+                          <input type="text" name="VisaType" class="form-control form-control-alternative"
+                            formControlName="VisaType" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Emirates ID </label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                            formControlName="workVisaEmirateId" placeholder="Emirates ID" readonly />
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="workVisaEmirateId" placeholder="Emirates ID"  />
 
                         </div>
 
@@ -238,16 +238,16 @@
                         <div class="form-group">
 
                           <label for="" class="form-control-label">Categories Of Visa </label>
-                          <input type="text" name="" id="" name="categoryOfVisa" class="form-control form-control-lg"
-                            formControlName="categoryOfVisa" readonly>
+                          <input type="text" name="" id="" name="categoryOfVisa" class="form-control form-control-alternative"
+                            formControlName="categoryOfVisa" >
 
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="">Visa issuing company</label>
-                          <input type="text" name="siGlobalWorkVisaCompany" class="form-control form-control-lg"
-                            formControlName="siGlobalWorkVisaCompany" id="" readonly>
+                          <input type="text" name="siGlobalWorkVisaCompany" class="form-control form-control-alternative"
+                            formControlName="siGlobalWorkVisaCompany" id="" >
 
 
                         </div>
@@ -260,15 +260,15 @@
                         <div class="form-group">
                           <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
                           <label for="floatingTextInput1" class="form-control-label"> Visa Issue Date </label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                            formControlName="visaIssueyDate" placeholder="" readonly />
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="visaIssueyDate" placeholder=""  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Visa Expiry Date . </label>
                           <input type="text" class="form-control form-control-alternative"
-                            formControlName="visaExpiryDate" id="floatingTextInput1" placeholder="" readonly />
+                            formControlName="visaExpiryDate" id="floatingTextInput1" placeholder=""  />
 
                         </div>
 
@@ -283,7 +283,7 @@
                             Visa Scanned Copy Of ID
                           </label>
                           <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
-                            name="VisaScannedCopyOfID" placeholder="" (change)="uploadFile($event)" readonly />
+                            name="VisaScannedCopyOfID" placeholder="" (change)="uploadFile($event)"  />
                         </div>
                       </div>
 
@@ -296,7 +296,7 @@
                           </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="secondaryIssuingAuthority" placeholder="Secondary Issuing Authority"
-                            readonly />
+                             />
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -305,7 +305,7 @@
                             Percentage Or Grade
                           </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="secondarymarksOrGrade" placeholder="Secondary Percentage" readonly />
+                            formControlName="secondarymarksOrGrade" placeholder="Secondary Percentage"  />
 
                         </div>
 
@@ -317,14 +317,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Year </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            placeholder="Year" formControlName="secondaryyear" readonly />
+                            placeholder="Year" formControlName="secondaryyear"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
                           <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
-                            placeholder="" name="ScannedCopyOfSecondary" (change)="uploadFile($event)" readonly />
+                            placeholder="" name="ScannedCopyOfSecondary" (change)="uploadFile($event)"  />
 
                         </div>
 
@@ -336,9 +336,9 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Senior Secondary Issuing Authority
                           </label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="seniorSecondaryIssuingAuthority"
-                            placeholder="Senior Secondary Issuing Authority" readonly />
+                            placeholder="Senior Secondary Issuing Authority"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -346,9 +346,9 @@
                           <label for="floatingTextInput1" class="form-control-label">
                             Senior Secondary Percentage Or Grade
                           </label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                             placeholder="Senior Secondary Percentage" formControlName="seniorSecondaryMarksOrGrade"
-                            readonly />
+                             />
 
                         </div>
 
@@ -359,16 +359,16 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Year </label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                            placeholder="Year" formControlName="seniorSecondaryYear" readonly />
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Year" formControlName="seniorSecondaryYear"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
-                          <input type="file" class="form-control form-control-lg" id="floatingTextInput1"
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
                             placeholder="John" name="ScannedCopyOfSeniorSecondary" (change)="uploadFile($event)"
-                            readonly />
+                             />
                         </div>
 
                       </div>
@@ -381,7 +381,7 @@
                           </label>
                           <input type="text" class="form-control" id="floatingTextInput1"
                             placeholder="Graduation Issuing Authority" formControlName="graduationIssuingAuthority"
-                            readonly />
+                             />
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -390,7 +390,7 @@
                             Graduation Percentage Or Grade
                           </label>
                           <input type="text" class="form-control" id="floatingTextInput1"
-                            placeholder="Graduation Percentage " formControlName="graduationMarksOrGrade" readonly />
+                            placeholder="Graduation Percentage " formControlName="graduationMarksOrGrade"  />
                         </div>
 
                       </div>
@@ -401,14 +401,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Year </label>
                           <input type="text" class="form-control" id="floatingTextInput1" placeholder="Year"
-                            formControlName="graduationYear" readonly />
+                            formControlName="graduationYear"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
                           <input type="file" class="form-control" id="floatingTextInput1" placeholder="John"
-                            name="ScannedCopyOfGraduation" (change)="uploadFile($event)" readonly />
+                            name="ScannedCopyOfGraduation" (change)="uploadFile($event)"  />
                         </div>
 
                       </div>
@@ -423,7 +423,7 @@
                           </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                             placeholder="Post Graduation Issuing Authority"
-                            formControlName="postGraduationIssuingAuthority" readonly />
+                            formControlName="postGraduationIssuingAuthority"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -432,7 +432,7 @@
                             Post Graduation Percentage Or Grade
                           </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            placeholder="John" formControlName="postGraduationMarksOrGrade" readonly />
+                            placeholder="John" formControlName="postGraduationMarksOrGrade"  />
                         </div>
 
                       </div>
@@ -443,14 +443,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Year </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            placeholder="Year" formControlName="postGraduationYear" readonly />
+                            placeholder="Year" formControlName="postGraduationYear"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
                           <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
-                            placeholder="" name="ScannedCopyOfPostGraduation" (change)="uploadFile($event)" readonly />
+                            placeholder="" name="ScannedCopyOfPostGraduation" (change)="uploadFile($event)"  />
                         </div>
 
                       </div>
@@ -462,7 +462,7 @@
                           <label for="floatingTextInput1" class="form-control-label"> Previous Company Name
                           </label>
                           <input type="text" class="form-control form-control-alternative" formControlName="companyName"
-                            id="floatingTextInput1" placeholder="Company Name " readonly />
+                            id="floatingTextInput1" placeholder="Company Name "  />
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -471,7 +471,7 @@
                             Previous Designation
                           </label>
                           <input type="text" class="form-control form-control-alternative" formControlName="designation"
-                            id="floatingTextInput1" placeholder="Designation" readonly />
+                            id="floatingTextInput1" placeholder="Designation"  />
                         </div>
 
                       </div>
@@ -482,14 +482,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Worked From </label>
                           <input type="text" class="form-control form-control-alternative" formControlName="dateFrom"
-                            id="floatingTextInput1" readonly />
+                            id="floatingTextInput1"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Worked To</label>
                           <input type="text" class="form-control form-control-alternative" formControlName="dateTo"
-                            id="floatingTextInput1" readonly />
+                            id="floatingTextInput1"  />
                         </div>
 
                       </div>
@@ -500,15 +500,15 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Background Check</label>
                           <input type="text" name="status" class="form-control form-control-alternative"
-                            formControlName="status" id="" readonly>
+                            formControlName="status" id="" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <div class="form-floating mb-3">
-                            <label for="">Checked By</label>
+                            <label for="" class="form-control-label">Checked By</label>
                             <input type="text" name="doneBy" formControlName="doneBy"
-                              class="form-control form-control-lg" id="" readonly>
+                              class="form-control form-control-alternative" id="" >
 
                           </div>
                         </div>
@@ -519,12 +519,12 @@
                     <div class="row">
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label for="floatingTextInput1">
+                          <label for="floatingTextInput1" class="form-control-label">
                             Name the Concerned Manager for Internal
                           </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="internalConcernedManager" placeholder="Name the Concerned Manager"
-                            readonly />
+                             />
                         </div>
                       </div>
                     </div>
@@ -534,12 +534,12 @@
                           <div>
 
                             <div>
-                              <label for="floatingTextInput1">
+                              <label for="floatingTextInput1" class="form-control-label">
                                 Name the Concerned Person
                               </label>
                               <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                                 placeholder="Name the Concerned Person" formControlName="externalConcernedPerson"
-                                readonly />
+                                 />
                             </div>
                           </div>
                         </div>
@@ -553,9 +553,9 @@
                           <div>
                             <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
                             <div class="form-floating mb-3">
-                              <label for="floatingTextInput1"> Post </label>
-                              <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                                placeholder="Post" formControlName="externalPost" readonly />
+                              <label for="floatingTextInput1" class="form-control-label"> Post </label>
+                              <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                                placeholder="Post" formControlName="externalPost"  />
                             </div>
                           </div>
                         </div>
@@ -564,10 +564,10 @@
                         <div class="form-group">
                           <div>
                             <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 form-control-label" >
                               <label for="floatingTextInput1"> Company Name </label>
-                              <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                                placeholder="Company Name " formControlName="externalCompanyName" readonly />
+                              <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                                placeholder="Company Name " formControlName="externalCompanyName"  />
                             </div>
                           </div>
                         </div>
@@ -582,7 +582,7 @@
                             <div class="form-floating mb-3">
                               <label for="" class="form-control-label">Code</label>
                               <input type="text" name="externalPhoneCode" class=" form-control form-control-alternative"
-                                formControlName="externalPhoneCode" id="" readonly>
+                                formControlName="externalPhoneCode" id="" >
                             </div>
                           </div>
                         </div>
@@ -591,9 +591,9 @@
                         <div class="form-group">
                           <div>
                             <div class="form-floating mb-3 firstName BloodNO">
-                              <label for="floatingTextInput1">Hr Number</label>
-                              <input type="number" class="form-control form-control-lg" id="floatingTextInput1"
-                                formControlName="externalPhoneNo" placeholder="Hr Number" readonly />
+                              <label for="floatingTextInput1" class="form-control-label">Hr Number</label>
+                              <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                                formControlName="externalPhoneNo" placeholder="Hr Number"  />
                             </div>
                           </div>
                         </div>
@@ -608,7 +608,7 @@
                           <div class="form-group">
                             <label for="" class="form-control-label">Approved By Manager</label>
                             <input type="text" name="managerApproval" class="form-control form-control-alternative"
-                              formControlName="managerApproval" readonly>
+                              formControlName="managerApproval" >
 
                           </div>
                         </div>
@@ -621,7 +621,7 @@
                             </label>
                             <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                               name="managerName" formControlName="managerName" placeholder="Name Of Approving Manager"
-                              readonly />
+                               />
                           </div>
                         </div>
 
@@ -633,9 +633,9 @@
 
                         <div>
                           <div class="form-group">
-                            <label for="floatingTextInput1" class="form-check-label"> Remarks </label>
+                            <label for="floatingTextInput1" class="form-control-label"> Remarks </label>
                             <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                              formControlName="remark" name="remark" placeholder="Remarks" readonly />
+                              formControlName="remark" name="remark" placeholder="Remarks"  />
                           </div>
                         </div>
 
@@ -655,8 +655,8 @@
                         <div class="form-group">
                           <div class="form-check">
                             <input class="form-check-input" formControlName="addressVerified" type="checkbox"
-                              [value]="'Yes'" id="flexCheckDefault" readonly />
-                            <label class="form-check-label" for="flexCheckDefault">
+                              [value]="'Yes'" id="flexCheckDefault"  />
+                            <label class="form-control-label" for="flexCheckDefault">
                               Address
                             </label>
                           </div>
@@ -666,8 +666,8 @@
                         <div class="form-group">
                           <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Yes"
-                              formControlName="previousEmploymentStatusVerified" id="flexCheckDefault" readonly />
-                            <label class="form-check-label" for="flexCheckDefault">
+                              formControlName="previousEmploymentStatusVerified" id="flexCheckDefault"  />
+                            <label class="form-control-label" for="flexCheckDefault">
                               Previous Employee Status
                             </label>
                           </div>
@@ -683,8 +683,8 @@
                           <div class="form-check">
                             <input class="form-check-input"
                               formControlName="previousDesignationAndResponsibilityVerified" type="checkbox"
-                              [value]="'Yes'" id="flexCheckDefault" readonly />
-                            <label class="form-check-label" for="flexCheckDefault">
+                              [value]="'Yes'" id="flexCheckDefault"  />
+                            <label class="form-control-label" for="flexCheckDefault">
                               Previous designation Or Responsiblities
                             </label>
                           </div>
@@ -694,7 +694,7 @@
                         <div class="form-group">
                           <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="Yes"
-                              formControlName="idProofDocumentVerified" id="flexCheckDefault" readonly />
+                              formControlName="idProofDocumentVerified" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Id Proof Document Verified
                             </label>
@@ -709,7 +709,7 @@
                         <div class="form-group">
                           <div class="form-check">
                             <input class="form-check-input" formControlName="educationalQualificationVerified"
-                              type="checkbox" [value]="'Yes'" id="flexCheckDefault" readonly />
+                              type="checkbox" [value]="'Yes'" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Education Qualifications
                             </label>
@@ -723,7 +723,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Criminal</label>
                           <input type="text" name="" id="" name="criminalRecords" formControlName="criminalRecords"
-                            class="form-control form-control-alternative" readonly>
+                            class="form-control form-control-alternative" >
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -732,7 +732,7 @@
                             <label for="floatingTextInput1" class="form-control-lg"> Record Sheet </label>
                             <input type="file" id="floatingTextInput1" class="form-control form-control-alternative"
                               formControlName="RecordSheet" name="RecordSheet" (change)="uploadFile($event)"
-                              placeholder="Record Sheet" readonly />
+                              placeholder="Record Sheet"  />
                           </div>
                         </div>
 
@@ -746,7 +746,7 @@
                             <label for="" class="form-control-lg">Punishment For Imprisonment</label>
                             <input type="text" (change)="onSelect($event)" name="punishmentForImprisonmentApproval"
                               class="form-control form-control-alternative"
-                              formControlName="punishmentForImprisonmentApproval" readonly>
+                              formControlName="punishmentForImprisonmentApproval" >
                           </div>
                         </div>
                       </div>
@@ -755,7 +755,7 @@
                           <div class="form-floating mb-3">
                             <label for="" class="form-control-lg">Aprroved By Authority </label>
                             <input type="text" name="approvalsheet" class="form-control form-control-alternative"
-                              formControlName="approvalsheet" readonly>
+                              formControlName="approvalsheet" >
                           </div>
                         </div>
 
@@ -767,8 +767,8 @@
                         <div class="form-group">
                           <div class="form-floating mb-3">
                             <label for="floatingTextInput1"> Declaration</label>
-                            <input type="file" class="form-control form-control-lg" id="floatingTextInput1"
-                              (change)="uploadFile($event)" name="Declaration" placeholder="" readonly />
+                            <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                              (change)="uploadFile($event)" name="Declaration" placeholder=""  />
                           </div>
                         </div>
                       </div>
@@ -785,14 +785,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-lg">Training Type</label>
                           <input type="text" class="form-control form-control-alternative"
-                            formControlName="trainingType" id="floatingTextInput1" readonly />
+                            formControlName="trainingType" id="floatingTextInput1"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="" class="form-control-lg">Training Source</label>
                           <input type="text" name="inHouseOutsource" formControlName="inHouseOutsource"
-                            class="form-control form-control-alternative" readonly>
+                            class="form-control form-control-alternative" >
                         </div>
 
                       </div>
@@ -803,7 +803,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-lg">Training Details</label>
                           <input type="text" name="paidUnpaid" formControlName="paidUnpaid"
-                            class="form-control form-control-alternative" readonly>
+                            class="form-control form-control-alternative" >
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -812,7 +812,7 @@
                             Training Start Date
                           </label>
                           <input type="text" class="form-control form-control-alternative"
-                            formControlName="trainingStartDate" id="floatingTextInput1" readonly />
+                            formControlName="trainingStartDate" id="floatingTextInput1"  />
                         </div>
 
                       </div>
@@ -822,15 +822,15 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1"> Training End Date </label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                            formControlName="trainingEndDate" readonly />
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainingEndDate"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-lg"> Trainer Name </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="trainerName" readonly />
+                            formControlName="trainerName"  />
                         </div>
 
                       </div>
@@ -841,14 +841,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1"> Post </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="trainerPost" readonly />
+                            formControlName="trainerPost"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1"> Departnment </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="trainerDepartment" placeholder="Departnment" readonly />
+                            formControlName="trainerDepartment" placeholder="Departnment"  />
                         </div>
 
                       </div>
@@ -865,8 +865,8 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1">Phone Number</label>
-                          <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                            formControlName="trainerPhoneNo" readonly />
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainerPhoneNo"  />
                         </div>
 
                       </div>
@@ -879,14 +879,14 @@
                             Job Post & Designation
                           </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="jobPostDesignation" placeholder="Designation" readonly />
+                            formControlName="jobPostDesignation" placeholder="Designation"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="jobdepartment" class="form-control-label">Departnment</label>
                           <input type="text" name="jobdepartment" class="form-control form-control-alternative"
-                            formControlName="jobdepartment" readonly>
+                            formControlName="jobdepartment" >
 
                         </div>
 
@@ -898,7 +898,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Provided Email Id</label>
                           <input type="text" name="companyEmailIdProvided" formControlName="companyEmailIdProvided"
-                            class="form-control form-control-alternative" (change)="onSelect($event)" readonly>
+                            class="form-control form-control-alternative" (change)="onSelect($event)" >
 
                         </div>
                       </div>
@@ -906,26 +906,26 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Company Email Id </label>
                           <input type="email" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="companyEmailId" placeholder="Company Email Id " readonly />
+                            formControlName="companyEmailId" placeholder="Company Email Id "  />
                         </div>
 
                       </div>
 
                     </div>
                     <div class="row">
-                      <div class="col-lg-6">
+                      <!-- <div class="col-lg-6">
                         <div class="form-group">
                           <label for="" class="form-control-label">Jobs Levels</label>
                           <input type="text" name="jobLevel" formControlName="jobLevel"
-                            class="form-control form-control-alternative" readonly>
+                            class="form-control form-control-alternative" >
                         </div>
-                      </div>
+                      </div> -->
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Posted Location </label>
                           <input type="text" class="form-control form-control-alternative"
                             formControlName="postedLocation" id="floatingTextInput1" placeholder="Posted Location"
-                            readonly />
+                             />
                         </div>
 
                       </div>
@@ -940,7 +940,7 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Basic </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="basicAllowance" placeholder="Basic" readonly />
+                            formControlName="basicAllowance" placeholder="Basic"  />
                         </div>
                       </div>
 
@@ -951,7 +951,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="houseRentAllowance"
-                              value="Yes" id="flexCheckDefault" readonly />
+                              value="Yes" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               House Rent
                             </label>
@@ -961,8 +961,8 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> House Rent Amount </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="houseRentAmount" placeholder="House Rent Amount " readonly />
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="houseRentAmount" placeholder="House Rent Amount "  />
                         </div>
                       </div>
 
@@ -973,7 +973,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="foodAllowance" value="Yes"
-                              id="flexCheckDefault" readonly />
+                              id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Food Allowance
                             </label>
@@ -983,8 +983,8 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Food Allowance Amount </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="foodAllowanceAmount" placeholder="House Rent Amount " readonly />
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="foodAllowanceAmount" placeholder="House Rent Amount "  />
                         </div>
                       </div>
 
@@ -995,7 +995,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="vehicleAllowance"
-                              value="Yes" id="flexCheckDefault" readonly />
+                              value="Yes" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Vehicle Allowance
                             </label>
@@ -1005,8 +1005,8 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Vehicle Allowance Amount </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="vehicleAllowanceAmount" placeholder="House Rent Amount " readonly />
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="vehicleAllowanceAmount" placeholder="House Rent Amount "  />
                         </div>
                       </div>
 
@@ -1017,7 +1017,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="uniformAllowance"
-                              value="Yes" id="flexCheckDefault" readonly />
+                              value="Yes" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Uniform Allowance
                             </label>
@@ -1027,9 +1027,9 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Uniform Allowance Amount </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="uniformAllowanceAmount" placeholder="Uniform Allowance  Amount "
-                            readonly />
+                             />
                         </div>
                       </div>
 
@@ -1040,7 +1040,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="travellingAllowances"
-                              value="Yes" id="flexCheckDefault" readonly />
+                              value="Yes" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Travelling Allowance
                             </label>
@@ -1051,9 +1051,9 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Travelling Allowance Amount
                           </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="travellingAllowancesAmount" placeholder="Travelling Allowance  Amount "
-                            readonly />
+                             />
                         </div>
                       </div>
 
@@ -1064,7 +1064,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="educationalAllowance"
-                              value="Yes" id="flexCheckDefault" readonly />
+                              value="Yes" id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Education Allowance
                             </label>
@@ -1075,9 +1075,9 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Education Allowance Amount
                           </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="educationalAllowanceAmount" placeholder="Education Allowance  Amount "
-                            readonly />
+                             />
                         </div>
                       </div>
 
@@ -1088,7 +1088,7 @@
                         <div class="form-group">
                           <div class="form-check" style="padding-top: 36px;">
                             <input class="form-check-input" type="checkbox" formControlName="otherAllowance" value="Yes"
-                              id="flexCheckDefault" readonly />
+                              id="flexCheckDefault"  />
                             <label class="form-check-label" for="flexCheckDefault">
                               Other Allowance
                             </label>
@@ -1098,8 +1098,8 @@
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Other Allowance Amount </label>
-                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="otherAllowanceAmount" placeholder="Other Allowance  Amount " readonly />
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="otherAllowanceAmount" placeholder="Other Allowance  Amount "  />
                         </div>
                       </div>
 
@@ -1110,14 +1110,14 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Vehicle Issued</label>
                           <input type="text" name="vehicle" class="form-control form-control-alternative"
-                            formControlName="vehicle" readonly>
+                            formControlName="vehicle" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label">Vehicle Number </label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="vehicleNumber" placeholder="Vehicle Number" readonly />
+                            formControlName="vehicleNumber" placeholder="Vehicle Number"  />
                         </div>
                       </div>
 
@@ -1128,14 +1128,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Model Name</label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="vehicleModelName" placeholder="Model Name" readonly />
+                            formControlName="vehicleModelName" placeholder="Model Name"  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Model Year</label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="vehicleModelYear" placeholder="Model Year" readonly />
+                            formControlName="vehicleModelYear" placeholder="Model Year"  />
                         </div>
                       </div>
 
@@ -1149,7 +1149,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Vehicle type</label>
                           <input type="text" name="isVehicleNewOrPreowned" class="form-control form-control-alternative"
-                            formControlName="isVehicleNewOrPreowned" readonly>
+                            formControlName="isVehicleNewOrPreowned" >
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -1157,7 +1157,7 @@
                           <label for="" class="form-control-label">Vehicle Fuel</label>
                           <input type="text" name="vehicleFuelCashFacility"
                             class="form-control form-control-alternative" formControlName="vehicleFuelCashFacility"
-                            readonly>
+                            >
 
                         </div>
                       </div>
@@ -1170,7 +1170,7 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Chips Details</label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="vehicleFuelChipFacility" placeholder="Chips Details" readonly />
+                            formControlName="vehicleFuelChipFacility" placeholder="Chips Details"  />
                         </div>
                       </div>
 
@@ -1182,14 +1182,14 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Accommodation Issued</label>
                           <input type="text" name="accommodationYesOrNo" class="form-control form-control-alternative"
-                            formControlName="accommodationYesOrNo" readonly>
+                            formControlName="accommodationYesOrNo" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="" class="form-control-label">Type Of Accomandation</label>
                           <input type="text" name="isShredOrSeparate" class="form-control form-control-alternative"
-                            formControlName="isShredOrSeparate" readonly>
+                            formControlName="isShredOrSeparate" >
 
                         </div>
                       </div>
@@ -1203,7 +1203,7 @@
                           <label for="" class="form-control-label">Type Of Shared</label>
                           <input type="text" name="isExeutiveOrLabourFacility"
                             class="form-control form-control-alternative" formControlName="isExeutiveOrLabourFacility"
-                            readonly>
+                            >
 
                         </div>
                       </div>
@@ -1212,7 +1212,7 @@
                           <label for="" class="form-control-label">Electricity Allocation</label>
                           <input type="text" name="electricityAllocationYesOrNo"
                             class="form-control form-control-alternative" formControlName="electricityAllocationYesOrNo"
-                            readonly>
+                            >
                         </div>
                       </div>
 
@@ -1226,14 +1226,14 @@
                             Electricity Allocation Amount</label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
                             formControlName="electricityAllocationAmount" placeholder="Electricity Allocation Amount"
-                            readonly />
+                             />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for=" " class="form-control-label">Rent Allocation</label>
                           <input type="text" name="rentAllocationYesOrNo" class="form-control form-control-alternative"
-                            formControlName="rentAllocationYesOrNo" readonly>
+                            formControlName="rentAllocationYesOrNo" >
                         </div>
                       </div>
 
@@ -1245,7 +1245,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Mobile Issued</label>
                           <input type="text" name="mobileIssuedOrNot" class="form-control form-control-alternative"
-                            formControlName="mobileIssuedOrNot" readonly>
+                            formControlName="mobileIssuedOrNot" >
 
                         </div>
                       </div>
@@ -1253,7 +1253,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Sim Issued</label>
                           <input type="text" name="simIssuedOrNot" class="form-control form-control-alternative"
-                            formControlName="simIssuedOrNot" readonly>
+                            formControlName="simIssuedOrNot" >
                         </div>
                       </div>
 
@@ -1265,7 +1265,7 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Flight Facilities</label>
                           <input type="text" name="flightFacilities" class="form-control form-control-alternative"
-                            formControlName="flightFacilities" readonly>
+                            formControlName="flightFacilities" >
 
 
                         </div>
@@ -1275,7 +1275,7 @@
                           <label for="" class="form-control-label">Flight Facilities Period</label>
 
                           <input type="text" name="howMuchTime" class="form-control form-control-alternative"
-                            formControlName="howMuchTime" readonly>
+                            formControlName="howMuchTime" >
                         </div>
                       </div>
 
@@ -1289,7 +1289,7 @@
 
                           <input type="text" name="healthInsuranceCoverage"
                             class="form-control form-control-alternative" (change)="onSelect($event)"
-                            formControlName="healthInsuranceCoverage" readonly>
+                            formControlName="healthInsuranceCoverage" >
                         </div>
                       </div>
                       <div class="col-lg-6">
@@ -1297,8 +1297,8 @@
                           <div>
                             <label for="floatingTextInput1">
                               Health Insurance Amount</label>
-                            <input type="text" class="form-control form-control-lg" id="floatingTextInput1"
-                              formControlName="maximumAmountGiven" placeholder="Health Insurance Amount" readonly />
+                            <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                              formControlName="maximumAmountGiven" placeholder="Health Insurance Amount"  />
                           </div>
                         </div>
                       </div>
@@ -1312,8 +1312,8 @@
                           <div class="form-floating mb-3">
                             <label for="">Family Health Insurance</label>
                             <input type="text" name="familyHealthInsuranceGivenOrNot"
-                              class="form-control form-control-lg" (change)="onSelect($event)"
-                              formControlName="familyHealthInsuranceGivenOrNot" readonly>
+                              class="form-control form-control-alternative" (change)="onSelect($event)"
+                              formControlName="familyHealthInsuranceGivenOrNot" >
                           </div>
                         </div>
                       </div>
@@ -1324,8 +1324,8 @@
                         'Yes'
                       ">
                             <label for="">Type Family Health Insurance</label>
-                            <input type="text" name="familyHealthInsuranceType" class="form-control form-control-lg"
-                              formControlName="familyHealthInsuranceType" readonly>
+                            <input type="text" name="familyHealthInsuranceType" class="form-control form-control-alternative"
+                              formControlName="familyHealthInsuranceType" >
                           </div>
                         </div>
                       </div>
@@ -1336,14 +1336,14 @@
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Joining Date </label>
                           <input type="date" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="joiningDate" placeholder="Joining Date " readonly />
+                            formControlName="joiningDate" placeholder="Joining Date "  />
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="" class="form-control-label">Punching Machine</label>
                           <input type="text" name="punchingMachineYesOrNo" class="form-control form-control-alternative"
-                            formControlName="punchingMachineYesOrNo" readonly>
+                            formControlName="punchingMachineYesOrNo" >
                         </div>
                       </div>
 
@@ -1355,14 +1355,14 @@
                         <div class="form-group">
                           <label for="" class="form-control-label">Refered By </label>
                           <input type="text" name="ReferedBy" class="form-control form-control-alternative"
-                            formControlName="ReferedBy" (change)="onSelect($event)" readonly>
+                            formControlName="ReferedBy" (change)="onSelect($event)" >
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label for="floatingTextInput1" class="form-control-label"> Reference Name</label>
                           <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
-                            formControlName="ReferenceName" placeholder="Reference Name" readonly />
+                            formControlName="ReferenceName" placeholder="Reference Name"  />
                         </div>
                       </div>
 
@@ -1876,7 +1876,7 @@
                               id="input-contact-number"
                               class="form-control form-control-alternative"
                               [value]="data.qualification"
-                              [readonly]="isReadOnly"
+                              []="is"
                             />
                           </div>
                         </div>
@@ -1893,7 +1893,7 @@
                               id="input-contact-number"
                               class="form-control form-control-alternative"
                               [value]="data.issuingAuthority"
-                              [readonly]="isReadOnly"
+                              []="is"
                             />
                           </div>
                         </div>
@@ -1911,7 +1911,7 @@
                               id="input-contact-number"
                               class="form-control form-control-alternative"
                               [value]="data.grade"
-                              [readonly]="isReadOnly"
+                              []="is"
                             />
                           </div>
                         </div>
@@ -1927,7 +1927,7 @@
                               id="input-contact-number"
                               class="form-control form-control-alternative"
                               [value]="data.yearOfQualification"
-                              [readonly]="isReadOnly"
+                              []="is"
                             />
                           </div>
                         </div>
@@ -1961,7 +1961,7 @@
                               id="input-contact-number"
                               class="form-control form-control-alternative"
                               [value]="data.gradingSystem"
-                              [readonly]="isReadOnly"
+                              []="is"
                             />
                           </div>
                         </div>

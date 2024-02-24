@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { Country, State, City } from "country-state-city";
 import { ServicesService } from "src/app/services/services.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-update-employee",
   templateUrl: "./update-employee.component.html",
@@ -17,6 +18,7 @@ export class UpdateEmployeeComponent implements OnInit {
   public Countries: any[] = [];
 
   constructor(
+    private toastr: ToastrService,
     private apiService: ServicesService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -33,110 +35,400 @@ export class UpdateEmployeeComponent implements OnInit {
   };
 
   //method for uploading the files
+
   public uploadFile(event: any) {
     console.log(event.target.name);
 
     let file = (event.target as HTMLInputElement).files![0];
     switch (event.target.name) {
-      case "passportSizePhoto":
+      case 'passportSizePhoto':
+
+      if (file.size > 102400) { // 100KB in bytes
+        // alert('File size must be less than 100 KB!');
+        this.toastr.error('File size must be less than 100 KB!')
+        event.target.value = '';
+        return;
+      }
+      this.postForm?.patchValue({
+        [event.target.name]: file
+      });
+      break;
+        // this.postForm?.patchValue({
+        //   passportSizePhoto: file
+        // })
+        // break;
+      case 'scannedCopyOfLincense':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+        event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          passportSizePhoto: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   scannedCopyOfLincense: file
+        // })
         break;
-      case "scannedCopyOfLincense":
+      case 'passportScannedCopy':
+        if (file.type !== 'application/pdf') {
+          // alert('Only PDF files are allowed!');
+          this.toastr.error('Only PDF files are allowed!')
+        
+          return;
+        }
+        // Check if the file size is greater than 2MB
+        if (file.size > 2097152) { // 2MB in bytes
+          // alert('File size must be less than 2 MB!');
+          this.toastr.error('File size must be less than 2 MB!')
+          return;
+        }
         this.postForm?.patchValue({
-          scannedCopyOfLincense: file,
-        });
+          passportScannedCopy: file
+        })
         break;
-      case "passportScannedCopy":
+      case 'otherScannedIdProof':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          passportScannedCopy: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   otherScannedIdProof: file
+        // })
         break;
-      case "otherScannedIdProof":
+      case 'ScannedCopyOfRealtiveAddress':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          otherScannedIdProof: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfRealtiveAddress: file
+        // })
         break;
-      case "ScannedCopyOfRealtiveAddress":
+      case 'ScannedCopyOfRealtiveId':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfRealtiveAddress: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfRealtiveId: file
+        // })
         break;
-      case "ScannedCopyOfRealtiveId":
+      case 'ScannedCopyOfCourseCompleted':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfRealtiveId: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfCourseCompleted: file
+        // })
         break;
-      case "ScannedCopyOfCourseCompleted":
+      case 'ScannedCopyOfDiploma':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfCourseCompleted: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfDiploma: file
+        // })
         break;
-      case "ScannedCopyOfDiploma":
+      case 'ScannedCopyOfPostGraduation':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfDiploma: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfPostGraduation: file
+        // })
         break;
-      case "ScannedCopyOfPostGraduation":
+      case 'ScannedCopyOfGraduation':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfPostGraduation: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfGraduation: file
+        // })
         break;
-      case "ScannedCopyOfGraduation":
+      case 'ScannedCopyOfSeniorSecondary':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfGraduation: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfSeniorSecondary: file
+        // })
         break;
-      case "ScannedCopyOfSeniorSecondary":
+      case 'ScannedCopyOfSecondary':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfSeniorSecondary: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScannedCopyOfSecondary: file
+
+        // })
         break;
-      case "ScannedCopyOfSecondary":
+      case 'SalaryScannedCopy':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScannedCopyOfSecondary: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   SalaryScannedCopy: file
+        // })
         break;
-      case "SalaryScannedCopy":
+      case 'RecordSheet':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          SalaryScannedCopy: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   RecordSheet: file
+        // })
         break;
-      case "RecordSheet":
+      case 'CertificateUploadedForOutsource':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          RecordSheet: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   CertificateUploadedForOutsource: file
+        // })
         break;
-      case "CertificateUploadedForOutsource":
+      case 'PaidTrainingDocumentProof':
+        console.log(this.postForm.patchValue)
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          CertificateUploadedForOutsource: file,
+          [event.target.name]: file
         });
-        break;
-      case "PaidTrainingDocumentProof":
-        console.log(this.postForm.patchValue);
-        this.postForm?.patchValue({
-          PaidTrainingDocumentProof: file,
-        });
+        // this.postForm?.patchValue({
+        //   PaidTrainingDocumentProof: file
+        // })
         break;
 
-      case "VisaScannedCopyOfID":
+      case 'VisaScannedCopyOfID':
+        if (file.type !== 'application/pdf') {
+          // alert('Only PDF files are allowed!');
+          this.toastr.error('Only PDF files are allowed!')
+          
+          return;
+        }
+        // Check if the file size is greater than 2MB
+        if (file.size > 2097152) { // 2MB in bytes
+           this.toastr.error('Only PDF files are allowed!')
+          return;
+        }
         this.postForm?.patchValue({
-          VisaScannedCopyOfID: file,
-        });
+          passportScannedCopy: file
+        })
+        // this.postForm?.patchValue({
+        //   VisaScannedCopyOfID: file
+        // })
         break;
-      case "ScanCopyOfAchivements":
+      case 'ScanCopyOfAchivements':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          ScanCopyOfAchivements: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   ScanCopyOfAchivements: file
+        // })
         break;
-      case "Declaration":
+      case 'Declaration':
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
         this.postForm?.patchValue({
-          Declaration: file,
+          [event.target.name]: file
         });
+        // this.postForm?.patchValue({
+        //   Declaration: file
+        // })
         break;
+
+
     }
   }
+
+  // public uploadFile(event: any) {
+  //   console.log(event.target.name);
+
+  //   let file = (event.target as HTMLInputElement).files![0];
+  //   switch (event.target.name) {
+  //     case "passportSizePhoto":
+  //       this.postForm?.patchValue({
+  //         passportSizePhoto: file,
+  //       });
+  //       break;
+  //     case "scannedCopyOfLincense":
+  //       this.postForm?.patchValue({
+  //         scannedCopyOfLincense: file,
+  //       });
+  //       break;
+  //     case "passportScannedCopy":
+  //       this.postForm?.patchValue({
+  //         passportScannedCopy: file,
+  //       });
+  //       break;
+  //     case "otherScannedIdProof":
+  //       this.postForm?.patchValue({
+  //         otherScannedIdProof: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfRealtiveAddress":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfRealtiveAddress: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfRealtiveId":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfRealtiveId: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfCourseCompleted":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfCourseCompleted: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfDiploma":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfDiploma: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfPostGraduation":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfPostGraduation: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfGraduation":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfGraduation: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfSeniorSecondary":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfSeniorSecondary: file,
+  //       });
+  //       break;
+  //     case "ScannedCopyOfSecondary":
+  //       this.postForm?.patchValue({
+  //         ScannedCopyOfSecondary: file,
+  //       });
+  //       break;
+  //     case "SalaryScannedCopy":
+  //       this.postForm?.patchValue({
+  //         SalaryScannedCopy: file,
+  //       });
+  //       break;
+  //     case "RecordSheet":
+  //       this.postForm?.patchValue({
+  //         RecordSheet: file,
+  //       });
+  //       break;
+  //     case "CertificateUploadedForOutsource":
+  //       this.postForm?.patchValue({
+  //         CertificateUploadedForOutsource: file,
+  //       });
+  //       break;
+  //     case "PaidTrainingDocumentProof":
+  //       console.log(this.postForm.patchValue);
+  //       this.postForm?.patchValue({
+  //         PaidTrainingDocumentProof: file,
+  //       });
+  //       break;
+
+  //     case "VisaScannedCopyOfID":
+  //       this.postForm?.patchValue({
+  //         VisaScannedCopyOfID: file,
+  //       });
+  //       break;
+  //     case "ScanCopyOfAchivements":
+  //       this.postForm?.patchValue({
+  //         ScanCopyOfAchivements: file,
+  //       });
+  //       break;
+  //     case "Declaration":
+  //       this.postForm?.patchValue({
+  //         Declaration: file,
+  //       });
+  //       break;
+  //   }
+  // }
 
   // method for reading the file using file reader
   public fileToBase64(file: any, callback: any) {
@@ -697,7 +989,7 @@ public obj:any
       siGlobalWorkVisaCompany: this.obj?.visainfo?.siGlobalWorkVisaCompany,
       visaIssueyDate: this.obj?.visainfo?.visaIssueyDate,
       visaExpiryDate: this.obj?.visainfo?.visaExpiryDate,
-      VisaScannedCopyOfID: [this.obj?.visainfo.visaDocs],
+      VisaScannedCopyOfID: [this.obj?.visainfo.visaDocsData],
       DegreeAttestation: this.obj?.degreeAttestation,
       // education Qualification
 
@@ -706,7 +998,7 @@ public obj:any
         this.obj?.educations[0]?.secondaryIssuingAuthority,
       secondarymarksOrGrade: this.obj?.educations[0]?.secondarymarksOrGrade,
       secondaryyear: this.obj?.educations[0]?.secondaryyear,
-      ScannedCopyOfSecondary: [this.obj?.educations[0]?.secondaryDocumentScan],
+      ScannedCopyOfSecondary: [this.obj?.educations[0]?.secondaryDocumentScanData],
       // senior secondary details
       seniorSecondaryIssuingAuthority:
         this.obj?.educations[0]?.seniorSecondaryIssuingAuthority,
@@ -1318,13 +1610,18 @@ public obj:any
       );
       this.apiService.updatePost(formFileData,this.postForm.value.email).subscribe(
         (successResponse: any) => {
-          console.log("successfully");
-          this.router.navigate(['/dashboard']);
-        alert("successfully Post OnBoard")
+          // console.log("successfully");
+          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/user-profile']);
+        // alert("Successfully Posted OnBoard");
+        this.toastr.success('Successfully verified employee');
+
+        // alert("successfully Post OnBoard")
         },
         (errorResponse: any) => {
-          console.log(errorResponse);
-          alert(errorResponse.error.message)
+          // console.log(errorResponse);
+          // alert(errorResponse.error.message)
+          this.toastr.error(errorResponse.error.message);
         }
       );
     }

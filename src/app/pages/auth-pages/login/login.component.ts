@@ -116,6 +116,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ServicesService } from "src/app/services/services.service";
 import jwtDecode from "jwt-decode";
+import { ToastrService } from "ngx-toastr";
 
 export class User {
   constructor(
@@ -147,7 +148,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public passType = "password";
   public employeeId:any;
 
-  constructor(private loginServices: ServicesService, private router: Router,private zone: NgZone ,private projectName:ServicesService ) {}
+  constructor( private toastr: ToastrService,private loginServices: ServicesService, private router: Router,private zone: NgZone ,private projectName:ServicesService ) {}
 
   ngOnInit() {
 console.log(this.projectName.projectName)
@@ -190,15 +191,15 @@ public onSubmit(form: NgForm) {
   this.user.username = form.value.username;
   this.user.password = form.value.password;
   this.user.remember = form.value.remember;
-  console.log(this.user);
+  // console.log(this.user);
 
   
 
 
   this.loginServices.login(this.user).subscribe({
     next: (result: any) => {
-      console.log(result.currentDesignationAndTask
-        )
+      // console.log(result.currentDesignationAndTask
+      //   )
         var dataToStore = result.currentDesignationAndTask;
 
         // Convert the data to JSON format
@@ -211,7 +212,7 @@ public onSubmit(form: NgForm) {
       this.status = result.status;
       if (result.token) {
         var decoded: any = jwtDecode(result.token);
-        console.log(decoded);
+        // console.log(decoded);
         this.employeeId = decoded.sub;
         localStorage.setItem("token", result.token);
         this.message = "Successfully logged in!";
@@ -224,14 +225,14 @@ public onSubmit(form: NgForm) {
         if(result?.currentDesignationAndTask[0]?.designation[0]?.designationName !=null){
           this.loginServices.setRole(result?.currentDesignationAndTask[0]?.designation[0]?.designationName);
           var designationIdValue = result.currentDesignationAndTask[0].designation[0].designationId;
-console.log(designationIdValue);
+// console.log(designationIdValue);
 // Set the value in local storage with the key "designationId"
 localStorage.setItem("designationId", designationIdValue);
 
         this.navigateBasedOnRole();
 
         }else{
-          console.log("insdide the role")
+          // console.log("insdide the role")
           this.loginServices.setRole("Admin")
           this.navigateBasedOnRole();
 
@@ -245,8 +246,9 @@ localStorage.setItem("designationId", designationIdValue);
       }
     },
     error: (err: any) => {
-      console.error(err.error.message);
+      // console.error(err.error.message);
       // Display the error message
+      this.toastr.error(err.error.message)
       this.message = err.error.message;
       // Optionally use a custom alert here
       // alert(this.message);
@@ -255,36 +257,42 @@ localStorage.setItem("designationId", designationIdValue);
 }
 
 private navigateBasedOnRole() {
-  console.log("inside the login page");
+  // console.log("inside the login page");
   const token=this.loginServices.getToken()
   if (token) {
     const decodedToken: any = jwtDecode(token);
-    console.log(decodedToken.sub)
+    // console.log(decodedToken.sub)
     const get_emp = decodedToken.sub; 
-    console.log(get_emp) // Assuming 'id' is the property in the decoded token
+    // console.log(get_emp) // Assuming 'id' is the property in the decoded token
     this.emp_id=get_emp
 
   } else {
-    console.error('Token not found.');
+    // console.error('Token not found.');
   }
-  console.log(this.emp_id) // Assuming 'id'
+  // console.log(this.emp_id) // Assuming 'id'
 
   this.loginServices.personalInfo(this.emp_id).subscribe((successResponse:any)=>{
-    console.log(successResponse)
+    // console.log(successResponse)
     if(successResponse?.onboardHrApprovalStatus=='pending' && successResponse?.filledForm==false){
-              console.log("hrApproval Status Pending")
+              // console.log("hrApproval Status Pending")
+
+              this.toastr.info("Successfully Login")
               this.router.navigate(['/onBoard-updating']);
             
     
             }else if(successResponse?.onboardHrApprovalStatus=='pending' && successResponse?.filledForm==true){
-              console.log("onboardHrApprovalStatus waiting ")
+              // console.log("onboardHrApprovalStatus waiting ")
+              this.toastr.info("Successfully Login")
               this.router.navigate(['/waiting-for-hr-approval']);
     
             }else{
               this.router.navigate(["/user-profile"]);
+              this.toastr.info("Successfully Login")
               // this.router.navigate(["/comman-dasboard"]);
             }
-  })
+  },((errorResponse)=>{
+    this.toastr.error("Something Went Wrong")
+  }))
 
   // this.router.navigate(["/comman-dasboard"]);
 // this.loginServices.personalInfo(this.employeeId).subscribe((SuccessData)=>{

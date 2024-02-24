@@ -4,6 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { Router } from '@angular/router';
 import { ServicesService } from 'src/app/services/services.service';
 import jwtDecode from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,9 @@ export class NavbarComponent implements OnInit {
   public location: Location;
   public emp_id:any
   public userData:any;
-  constructor(location: Location,  private element: ElementRef, private router: Router,public _authService:ServicesService) {
+
+  getAllEmp:any;
+  constructor(private toastr: ToastrService,location: Location,  private element: ElementRef, private router: Router,public _authService:ServicesService) {
     this.location = location;
   }
 
@@ -33,6 +36,19 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
+this._authService.getAllActiveEmployee().subscribe((successResponse)=>{
+  console.log(successResponse[0].employeeId)
+  this.getAllEmp=successResponse
+
+},((errorResponse)=>{
+  this.toastr.error("Something Went Wrong")
+  
+
+}))
+
+
+
 // this._authService.getToken()
 const token=this._authService.getToken()
 if (token) {

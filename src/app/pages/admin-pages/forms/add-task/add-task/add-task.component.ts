@@ -47,7 +47,9 @@ this.api.get_all_task().subscribe((successResponse) => {
         console.log(successResponse)
         this.toastr.info("Suceessfully Done")
         window.location.reload();
-      })
+      },((errorResponse)=>{
+        this.toastr.info("Something Went Wrong")
+      }))
   }
 
 

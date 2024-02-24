@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServicesService } from 'src/app/services/services.service';
-
+import { ToastrService } from 'ngx-toastr';
+import { Country, State, City } from 'country-state-city';
 @Component({
   selector: 'app-add-location',
   templateUrl: './add-location.component.html',
@@ -11,9 +12,12 @@ import { ServicesService } from 'src/app/services/services.service';
 export class AddLocationComponent implements OnInit {
 get_employee_Id:any;
 inchargeInfo:any;
+public Countries: any[] = []
 tableData:any
   myForm: FormGroup;
   ngOnInit(): void {
+    this.Countries = Country.getAllCountries()
+    console.log(this.Countries)
 
     this.service.getAllLocation().subscribe((successResponse)=>{
 console.log(successResponse)
@@ -23,7 +27,7 @@ this.tableData=successResponse
       alert("Something went wrong")
     }))
     this.myForm = this.fb.group({
-      concernedAuthorityEmpId: ['', Validators.required],
+      concernedAuthorityEmpId: [null, Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
       latitude: ['', Validators.required],
@@ -36,12 +40,12 @@ this.tableData=successResponse
     
   }
 
-  constructor(private fb: FormBuilder,private service:ServicesService,private router:Router) {
-    this.service.getAllEmployees().subscribe((successResponse:any)=>{
-      console.log(successResponse)
-      this.get_employee_Id=successResponse
+  constructor(private fb: FormBuilder,private service:ServicesService,private router:Router,private toastr: ToastrService) {
+    // this.service.getAllEmployees().subscribe((successResponse:any)=>{
+    //   console.log(successResponse)
+    //   this.get_employee_Id=successResponse
 
-    })
+    // })
    
   }
 
@@ -84,13 +88,18 @@ console.log(formData);
 
     this.service.add_location(formData).subscribe({
       next: (successResponse) => {
-        alert(successResponse);
-        console.log(successResponse)
+        // alert(successResponse);
+        // console.log(successResponse)
+
+        window.location.reload();
+        this.toastr.info(" Location Add Successfully  ")
         // Redirect to another page
-        this.router.navigate(['/user-profile']); // Replace with your path
+        // this.router.navigate(['/user-profile']); // Replace with your path
       },
       error: (errorResponse) => {
         console.error(errorResponse);
+        window.location.reload();
+        this.toastr.info("Something Went Wrong  ")
         // Handle error, possibly show an error message to the user
         // You might use Angular's built-in error handling or a custom service
       }
