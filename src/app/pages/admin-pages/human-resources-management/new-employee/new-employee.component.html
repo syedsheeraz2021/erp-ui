@@ -23,42 +23,56 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="namePrefix" class="form-control-label">Prefix</label>
+                        <label for="namePrefix" class="form-control-label">Prefix <span class="text-danger">*</span></label>
                         <!-- <input type="text" name="leaveReason" id="leaveReason" class="form-control form-control-alternative" formControlName="approvalStatus" [value]="obj?.approvalStatus"> -->
-                        <select name="namePrefix" id="namePrefix" class="form-control form-control-alternative" formControlName="namePrefix">
+                        <select name="namePrefix" id="namePrefix" class="form-control form-control-alternative" formControlName="namePrefix" (input)="hideThePrefixValidationMessage()"  >
                           <!-- <option value="">Days To Leave</option> -->
                           <option selected disabled [value]="'Prefix'">Prefix</option>
                           <option value="Mr">Mr</option>
                           <option value="Mrs">Mrs</option>
                           <option value="Miss">Miss</option>
                         </select>
+                        <div *ngIf="PrefixValidationMessage">
+                          <span class="text-danger">{{PrefixValidationMessage}}</span>
+                        </div>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-last-name">First Name</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder=" " formControlName="firstName">
+                        <label class="form-control-label" for="input-last-name">First Name <span class="text-danger">*</span></label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" 
+                        (input)="hideThefirstValidationMessage()" 
+                        formControlName="firstName">
+                        <div *ngIf="firstNameValidationMessage">
+                          <span class="text-danger">{{firstNameValidationMessage}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-father-name">Middle Name</label>
+                        <label class="form-control-label" for="input-father-name">Middle Name </label>
                         <input type="text" id="input-father-name" class="form-control form-control-alternative" placeholder="" value="" formControlName="middleName">
+                       
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-age">Last Name</label>
-                        <input type="text" id="input-age" class="form-control form-control-alternative" placeholder="" formControlName="lastName">
+                        <label class="form-control-label" for="input-age">Last Name <span class="text-danger">*</span></label>
+                        <input type="text" id="input-age" class="form-control form-control-alternative" placeholder=""
+                        (input)="hideThelastValidationMessage()" 
+                        formControlName="lastName">
+                        <div *ngIf="lastNameValidationMessage">
+                          <span class="text-danger">{{lastNameValidationMessage}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="">Code</label>
+                        <label class="form-control-label">Code <span class="text-danger"> *</span></label>
                       <select
                         name="cars"
                         id="cars"
@@ -66,24 +80,31 @@
                         formControlName="phoneCode"
                         id="floatingTextInput1"
                         style="padding-top: 12px"
+                        (input)="hideThePhonecodeValidationMessage()"
                       >
-                        <option selected disabled [value]="'Code'">Code</option>
+                        <option selected disabled [value]="'Code'">Code </option>
                         <option
                           *ngFor="let Country of Countries"
                           [value]="Country.phonecode"
                         >
-                          <!-- {{Country.phonecode}} {{Country.name}} </option> -->
-                          {{ Country.phonecode }}
+                          {{Country.phonecode}} {{Country.name}} 
+                          <!-- {{ Country.phonecode }} -->
                         </option>
                       </select>
+                      <div *ngIf="phoneCodeValidationMessage">
+                        <span class="text-danger">{{phoneCodeValidationMessage}}</span>
+                      </div>
   
                       </div>
                       
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Contact</label>
-                        <input type="number" id="input-email" class="form-control form-control-alternative" placeholder="" formControlName="personalContactNo">
+                        <label class="form-control-label" for="input-email">Contact <span class="text-danger"> *</span></label>
+                        <input type="number" id="input-email" class="form-control form-control-alternative"  (input)="hideThePersonalContactValidationMessage()" formControlName="personalContactNo">
+                        <div *ngIf="personalContactValidationMessage">
+                          <span class="text-danger">{{personalContactValidationMessage}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -105,19 +126,25 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Email </label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="" formControlName="email">
+                        <label class="form-control-label" for="input-email">Email  <span class="text-danger"> *</span></label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder=""
+                        (input)="hideTheemailValidationMessage()"
+                        formControlName="email">
+                        <div *ngIf="emailValidationMessage">
+                          <span class="text-danger">{{emailValidationMessage}}</span>
+                        </div>
                       </div>
-                      <div *ngIf="postForm.get('email').invalid && (postForm.get('email').dirty || postForm.get('email').touched)">
+                     
+                      <!-- <div *ngIf="postForm.get('email').invalid && (postForm.get('email').dirty || postForm.get('email').touched)">
                         <div *ngIf="postForm.get('email').hasError('required')">Email is required.</div>
                         <div *ngIf="postForm.get('email').hasError('email')">Invalid email address.</div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="">Citizenship</label>
+                        <label for="" class="form-control-label">Citizenship</label>
                       <select
                         name="cars"
                         id="cars"
@@ -141,7 +168,7 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="">Passport Issuing Country</label>
+                        <label for="" class="form-control-label">Passport Issuing Country</label>
                         <select
                           name="cars"
                           id="cars"
@@ -166,17 +193,21 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Date Of Birth </label>
+                        <label class="form-control-label" for="input-email">Date Of Birth  <span class="text-danger">*</span></label>
                         <input
                         type="Date"
                         (change)="getAge($event)"
                         min=""
-                        [max]="currentDate"
+                        [max]="maxDate"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="dateOfBirth"
                         placeholder="Date Of Birth"
+                        (input)="hideThedobValidationMessage()"
                       />
+                      <div *ngIf="dobValidationMessage">
+                        <span class="text-danger">{{dobValidationMessage}}</span>
+                      </div>
                       </div>
                       
                     </div>
@@ -190,6 +221,7 @@
                         [(ngModel)]="employeeAge"
                         formControlName="age"
                         placeholder="Age"
+                        readonly
                       />
                       </div>
                     </div>
@@ -197,15 +229,19 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Passport Size Photo </label>
+                        <label class="form-control-label" for="input-email">Passport Size Photo  <span class="text-danger">*</span></label>
                         <input
                         type="file"
                         name="passportSizePhoto"
                         (change)="uploadFile($event)"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
-                        placeholder="Passport Size Photo"
+                        
+                        (input)="hideThepassportSizePhotoValidationMessage()"
                       />
+                      <div *ngIf="passportSizePhotoValidationMessage">
+                        <span class="text-danger">{{passportSizePhotoValidationMessage}}</span>
+                      </div>
 
                       <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                       </div>
@@ -213,21 +249,32 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Passport Number </label>
+                        <label class="form-control-label" for="input-email">Passport Number <span class="text-danger">*</span> </label>
                         <input
                         type="text"
                         class="form-control form-control-alternative"
                         id="floatingTextInput2"
                         formControlName="passportNumber"
                         placeholder="Passport Number"
+                        pattern="[A-Za-z0-9]{6,9}"
+  title="Passport number must be between 6 to 9 alphanumeric characters."
+  (input)="hideThepassportNumberValidationMessage()"
                       />
+                    
+                      <div *ngIf="postForm.get('passportNumber').hasError('pattern') && postForm.get('passportNumber').touched" class="text-danger">
+                        Passport number must be between 6 to 9 alphanumeric characters.
+                      </div>
+
+                      <div *ngIf="passportNumberValidationMessage">
+                        <span class="text-danger">{{passportNumberValidationMessage}}</span>
+                      </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Passport Scanned Copy</label>
+                        <label class="form-control-label" for="input-email">Passport Scanned Copy <span class="text-danger">*</span></label>
                         <input
                         type="file"
                         class="form-control form-control-alternative"
@@ -235,7 +282,11 @@
                         name="passportScannedCopy"
                         (change)="uploadFile($event)"
                         accept=".pdf"
+                        (input)="hideThepassportScanCopyValidationMessage()"
                       />
+                      <div *ngIf="passportScanCopyValidationMessage">
+                        <span class="text-danger">{{passportScanCopyValidationMessage}}</span>
+                      </div>
                       <span class="text-secondry"> <small>PDF SIZE 2 MB ONLY</small>   </span>
   
                       </div>
@@ -249,7 +300,7 @@
                         class="form-control form-control-alternative"
                         formControlName="passportExpiryDate"
                         id="floatingTextInput1"
-                        placeholder="John"
+                        [min]="minDate"
                       />
                       </div>
                     </div>
@@ -312,8 +363,15 @@
                         name="scannedCopyOfLincense"
                         formControlName="scannedCopyOfLincense"
                         (change)="uploadFile($event)"
+                        (input)="hideTheLincenseScanCopyValidationMessage()"
                         
                       />
+                      <div *ngIf="LincenseScanCopyValidationMessage">
+                        <span class="text-danger">{{LincenseScanCopyValidationMessage}}</span>
+                      </div>
+                      <!-- <div  *ngIf="getPostFormControls['drivinglicense'].value == 'Yes'">
+                      
+                    </div> -->
                       <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
   
                       </div>
@@ -358,8 +416,8 @@
                       <option selected disabled [value]="'Type Of Visa'">
                         Type Of Visa
                       </option>
-                      <option value="Visit Visa">Visit Visa</option>
-                      <option value="Work Visa">Worked Visa</option>
+                      <option value="Tourist Visa">Tourist Visa</option>
+                      <option value="Employement Visa">Employement Visa</option>
                     </select>
                     </div>
                   </div>
@@ -444,13 +502,14 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
-                      <label for="floatingTextInput1" class="form-control-label"> Visa Issue Date . </label>
+                      <label for="floatingTextInput1" class="form-control-label"> Visa Issue Date </label>
                     <input
                       type="date"
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       formControlName="visaIssueyDate"
                       placeholder=""
+                      [max]="minDate"
                     />
                     </div>
                   </div>
@@ -463,7 +522,7 @@
                       formControlName="visaExpiryDate"
                       id="floatingTextInput1"
                       placeholder=""
-                      [min]="currentDate"
+                      [min]="minDate"
                     />
 
                     </div>
@@ -852,7 +911,9 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         style="padding-top: 12px; padding-left: 8px"
+                        (change)="onSelect($event)"
                         formControlName="status"
+                        (input)="hideThebgStatusValidationMessage()"
                       >
                         <option
                           selected
@@ -864,6 +925,10 @@
                         <option value="Done">Done</option>
                         <option value="Pending">Pending</option>
                       </select>
+                      <div *ngIf="bgStatusValidationMessage">
+                        <span class="text-danger">{{bgStatusValidationMessage}}</span>
+                      </div>
+                     
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -872,7 +937,7 @@
                     class="form-floating mb-3"
                     *ngIf="getPostFormControls['status'].value == 'Done'"
                   >
-                    <label for="">Checked By</label>
+                    <label for="" class="form-control-label">Checked By</label>
                     <select
                       name="doneBy"
                       id="cars"
@@ -880,6 +945,8 @@
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       style="padding-top: 12px; padding-left: 8px"
+                      (input)="hideThedoneByValidationMessage"
+                      (change)="onSelect($event)"
                     >
                       <option selected disabled [value]="'Checked By'">
                         Checked By
@@ -887,16 +954,21 @@
                       <option value="Internal">Internal</option>
                       <option value="External">External</option>
                     </select>
+                    <div *ngIf="doneByValidationMessage">
+                      <span class="text-danger">{{doneByValidationMessage}}</span>
+                    </div>
+                   
                   </div>
                     </div>
                     
                   </div>
                   
                 </div>
+                <div *ngIf="getPostFormControls['status'].value == 'Done'">
                 <div class="row" *ngIf="getPostFormControls['doneBy'].value == 'Internal'">
                   <div class="col-lg-6">
                     <div class="form-group" >
-                      <label for="floatingTextInput1">
+                      <label  class="form-control-label">
                         Name the Concerned Manager for Internal
                       </label>
                       <input
@@ -904,11 +976,16 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="internalConcernedManager"
-                        placeholder="Name the Concerned Manager"
+                        name="internalConcernedManager"
+                        (input)="hideTheinternalConcernedManagerValidationMessage()"
                       />
+                      <div *ngIf="internalConcernedManagerValidationMessage">
+                        <span class="text-danger">{{internalConcernedManagerValidationMessage}}</span>
+                      </div>
                     </div>
                   </div>
                   </div> 
+                </div>
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -921,7 +998,7 @@
                         
                         *ngIf="getPostFormControls['doneBy'].value == 'External'"
                       >
-                        <label for="floatingTextInput1">
+                        <label for="floatingTextInput1" class="form-control-label">
                           Name the Concerned Person
                         </label>
                         <input
@@ -930,7 +1007,11 @@
                           id="floatingTextInput1"
                           placeholder="Name the Concerned Person"
                           formControlName="externalConcernedPerson"
+                          (input)="hideTheexternalConcernedManagerValidationMessage()"
                         />
+                        <div *ngIf="externalConcernedManagerValidationMessage">
+                          <span class="text-danger">{{externalConcernedManagerValidationMessage}}</span>
+                        </div>
                       </div>
                     </div>
                     </div>
@@ -950,14 +1031,18 @@
                         class="form-floating mb-3"
                         *ngIf="getPostFormControls['doneBy'].value == 'External'"
                       >
-                        <label for="floatingTextInput1"> Post </label>
+                        <label for="floatingTextInput1" class="form-control-label"> Post </label>
                         <input
                           type="text"
                           class="form-control form-control-alternative"
                           id="floatingTextInput1"
                           placeholder="Post"
                           formControlName="externalPost"
+                          (input)="hideTheexternalPostManagerValidationMessage()"
                         />
+                        <div *ngIf="externalPostValidationMessage">
+                          <span class="text-danger">{{externalPostValidationMessage}}</span>
+                        </div>
                       </div>
                     </div>
                     </div>
@@ -973,14 +1058,18 @@
                     class="form-floating mb-3"
                     *ngIf="getPostFormControls['doneBy'].value == 'External'"
                   >
-                    <label for="floatingTextInput1"> Company Name </label>
+                    <label for="floatingTextInput1" class="form-control-label"> Company Name </label>
                     <input
                       type="text"
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       placeholder="Company Name "
                       formControlName="externalCompanyName"
+                      (input)="hideTheexternalCompanyNameValidationMessage()"
                     />
+                    <div *ngIf="externalCompanyNameValidationMessage">
+                      <span class="text-danger">{{externalCompanyNameValidationMessage}}</span>
+                    </div>
                   </div>
                 </div>
                     </div>
@@ -1007,6 +1096,7 @@
                       formControlName="externalPhoneCode"
                       id="floatingTextInput1"
                       style="padding-top: 12px; padding-left: 8px"
+                      (input)="hideTheexternalPhoneCodeValidationMessage()"
                     >
                       <option selected disabled [value]="'Code'">Code</option>
                       <option
@@ -1014,9 +1104,14 @@
                         [value]="Country.phonecode"
                         style="word-spacing: 30px"
                       >
-                        {{ Country.phonecode }}
+                      {{Country.phonecode}} {{Country.name}} 
+
+                      
                       </option>
                     </select>
+                    <div *ngIf="externalPhoneCodeValidationMessage">
+                      <span class="text-danger"> {{externalPhoneCodeValidationMessage}} </span>
+                    </div>
                   </div>
                 </div>
                     </div>
@@ -1031,14 +1126,18 @@
                         class="form-floating mb-3 firstName BloodNO"
                         *ngIf="getPostFormControls['doneBy'].value == 'External'"
                       >
-                        <label for="floatingTextInput1">Hr Number</label>
+                        <label for="floatingTextInput1" class="form-control-label">Hr Number</label>
                         <input
                           type="number"
                           class="form-control form-control-alternative"
                           id="floatingTextInput1"
                           formControlName="externalPhoneNo"
                           placeholder="Hr Number"
+                          (input)="hideTheexternalPhoneNoValidationMessage()"
                         />
+                        <div *ngIf="externalPhoneNoValidationMessage">
+                          <span class="text-danger"> {{externalPhoneNoValidationMessage}} </span>
+                        </div>
                       </div>
                     </div>
                     </div>
@@ -1059,9 +1158,11 @@
                       id="cars"
                       class="form-control form-control-alternative"
                       formControlName="managerApproval"
+                      name="managerApproval"
                       (change)="onSelect($event)"
                       id="floatingTextInput1"
                       style="padding-top: 12px; padding-left: 8px"
+                      (input)="hideThemanagerApprovalforbgValidationMessage()"
                     >
                       <option selected disabled [value]="'Approved By Manager'">
                         Approved By Manager
@@ -1069,6 +1170,11 @@
                       <option value="Approved">Approved</option>
                       <option value="Not Approved">Not Approved</option>
                     </select>
+                    <div *ngIf="managerApprovalforbgValidationMessage">
+                      <span class="text-danger">
+                        {{managerApprovalforbgValidationMessage}}
+                      </span>
+                    </div>
                   </div>
                   </div>
                   </div>
@@ -1087,8 +1193,13 @@
                       id="floatingTextInput1"
                       name="managerName"
                       formControlName="managerName"
-                      placeholder="Name Of Approving Manager"
+                      (input)="hideThemanagerApprovalNameforbgValidationMessage()"
                     />
+                    <div *ngIf="managerApprovalNameforbgValidationMessage">
+                      <span class="text-danger">
+                        {{managerApprovalNameforbgValidationMessage}}
+                      </span>
+                    </div>
                   </div>
                   </div>
                     
@@ -1103,7 +1214,7 @@
                     *ngIf="getPostFormControls['status'].value == 'Pending'  && getPostFormControls['managerApproval'].value == 'Approved' " 
                   >
                   <div class="form-group">
-                    <label for="floatingTextInput1" class="form-check-label"> Remarks </label>
+                    <label for="floatingTextInput1" class="form-control-label"> Remarks </label>
                     <input
                       type="text"
                       class="form-control form-control-alternative"
@@ -1221,7 +1332,7 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label for="" class="form-control-label">Criminal</label>
+                      <label for="" class="form-control-label">Criminal <span class="text-danger">*</span></label>
                       <select
                         name="criminalRecords"
                         id="cars"
@@ -1230,6 +1341,7 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         style="padding-top: 12px; padding-left: 8px"
+                        (input)="hideThecriminalRecordsValidationMessage()"
                       >
                         <option selected disabled [value]="'Select The Option'">
                           Select The Option .
@@ -1237,6 +1349,11 @@
                         <option value="Yes">Yes .</option>
                         <option value="No">No .</option>
                       </select>
+                      <div *ngIf="criminalRecordsValidationMessage">
+                        <span class="text-danger">
+                          {{criminalRecordsValidationMessage}}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -1247,7 +1364,7 @@
                       getPostFormControls['criminalRecords'].value == 'Yes'
                     "
                   >
-                    <label for="floatingTextInput1" class="form-control-alternative"> Record Sheet </label>
+                    <label for="floatingTextInput1" class="form-control-label"> Record Sheet </label>
                     <input
                       type="file"
                       class="form-control form-control-alternative"
@@ -1256,7 +1373,13 @@
                       (change)="uploadFile($event)"
                       name="RecordSheet"
                       placeholder="Record Sheet"
+                      (input)="hideTheRecordSheetValidationMessage()"
                     />
+                    <div *ngIf="RecordSheetValidationMessage">
+                      <span class="text-danger">
+                        {{RecordSheetValidationMessage}}
+                      </span>
+                    </div>
                     <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                   </div>
                     </div>
@@ -1273,7 +1396,7 @@
                       getPostFormControls['criminalRecords'].value == 'Yes'
                     "
                   >
-                    <label for="" class="form-control-alternative">Punishment For Imprisonment</label>
+                    <label for="" class="form-control-label">Punishment For Imprisonment</label>
                     <select
                       name="punishmentForImprisonmentApproval"
                       (change)="onSelect($event)"
@@ -1304,7 +1427,7 @@
                       getPostFormControls['criminalRecords'].value == 'Yes'
                     "
                   >
-                    <label for="" class="form-control-alternative">Aprroved By Authority </label>
+                    <label for="" class="form-control-label">Aprroved By Authority </label>
                     <select
                       name="approvalsheet"
                       id="cars"
@@ -1312,6 +1435,7 @@
                       id="floatingTextInput1"
                       style="padding-top: 12px; padding-left: 8px"
                       formControlName="approvalsheet"
+                      (input)="hideTheapprovalsheetValidationMessage()"
                     >
                       <option
                         selected
@@ -1323,6 +1447,9 @@
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
+                    <div *ngIf="approvalsheetValidationMessage">
+                      <span class="text-danger">{{approvalsheetValidationMessage}}</span>
+                    </div>
                   </div>
                     </div>
                     
@@ -1336,7 +1463,7 @@
                       class="form-floating mb-3"
                       *ngIf="getPostFormControls['criminalRecords'].value == 'No'"
                     >
-                      <label for="floatingTextInput1"> Declaration</label>
+                      <label for="floatingTextInput1" class="form-control-label"> Declaration</label>
                       <input
                         type="file"
                         class="form-control form-control-alternative"
@@ -1344,7 +1471,11 @@
                         (change)="uploadFile($event)"
                         name="Declaration"
                         placeholder=""
+                        (input)="hideTheDeclarationValidationMessage()"
                       />
+                      <div *ngIf="DeclarationValidationMessage">
+                        <span class="text-danger"> {{DeclarationValidationMessage}} </span>
+                      </div>
                       <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
                     </div>
                     </div>
@@ -1621,12 +1752,17 @@
                           class="form-check-input"
                           type="checkbox"
                           formControlName="houseRentAllowance"
-                          value="Yes"
+                          name="houseRentAllowance"
+                          (change)="onSelect($event)"
                           id="flexCheckDefault"
+                        
                         />
                         <label class="form-check-label" for="flexCheckDefault">
                           House Rent
                         </label>
+                        <!-- <div *ngIf="RentAmountValidationMessage">
+                          <span>{{RentAmountValidationMessage}}</span>
+                        </div> -->
                       </div> 
                    </div>
                   </div>
@@ -1639,7 +1775,16 @@
                         id="floatingTextInput1"
                         formControlName="houseRentAmount"
                         placeholder="House Rent Amount "
+                        (input)="hideTheHouseRentValidationMessage()"
                       /> 
+                      
+                      <div *ngIf="HouseRentAmountValidationMessage">
+                        <span class="text-danger">{{HouseRentAmountValidationMessage?.length > 0 ? HouseRentAmountValidationMessage : ''}}</span>
+                      </div>
+                      
+                      <!-- <div *ngIf="postForm.get('houseRentAmount')?.errors?.required && postForm.get('houseRentAmount')?.touched" class="alert alert-danger">
+                        House Rent Amount is required.
+                      </div> -->
                    </div>
                   </div>
                  
@@ -1653,7 +1798,9 @@
                           class="form-check-input"
                           type="checkbox"
                           formControlName="foodAllowance"
-                          value="Yes"
+                          name="foodAllowance"
+                      (change)="onSelect($event)"
+                          
                           id="flexCheckDefault"
                         />
                         <label class="form-check-label" for="flexCheckDefault">
@@ -1670,8 +1817,13 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="foodAllowanceAmount"
+                        name="foodAllowanceAmount"
                         placeholder="House Rent Amount "
+                        (input)="hideTheFoodAllowanceValidationMessage()"
                       /> 
+                      <div *ngIf="FoodAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{FoodAllowanceAmountValidationMessage}}</span>
+                      </div>
                    </div>
                   </div>
                  
@@ -1685,11 +1837,12 @@
                         class="form-check-input"
                         type="checkbox"
                         formControlName="vehicleAllowance"
-                        value="Yes"
+                      (change)="onSelect($event)"
+                        name="vehicleAllowance"
                         id="flexCheckDefault"
                       />
                       <label class="form-check-label" for="flexCheckDefault">
-                         Allowance
+                        Vehicle  Allowance
                       </label>
                       </div> 
                    </div>
@@ -1702,8 +1855,13 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="vehicleAllowanceAmount"
-                        placeholder="House Rent Amount "
+
+                        (input)="hideTheVehicleAllowanceValidationMessage()"
+                        
                       /> 
+                      <div *ngIf="VehicleAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{VehicleAllowanceAmountValidationMessage}}</span>
+                      </div>
                    </div>
                   </div>
                  
@@ -1717,7 +1875,9 @@
                         class="form-check-input"
                         type="checkbox"
                         formControlName="uniformAllowance"
-                        value="Yes"
+                      (change)="onSelect($event)"
+                        name="uniformAllowance"
+                    
                         id="flexCheckDefault"
                       />
                       <label class="form-check-label" for="flexCheckDefault">
@@ -1733,9 +1893,14 @@
                         type="number"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
+                        (input)="hideTheUniformAllowanceValidationMessage()"
                         formControlName="uniformAllowanceAmount"
                         placeholder="Uniform Allowance  Amount "
                       /> 
+                      <div *ngIf="UniformAllowanceAmountValidationMessage"> 
+                        <span class="text-danger">{{UniformAllowanceAmountValidationMessage}}</span>
+                      </div>
+                     
                    </div>
                   </div>
                  
@@ -1749,7 +1914,8 @@
                         class="form-check-input"
                         type="checkbox"
                         formControlName="travellingAllowances"
-                        value="Yes"
+                        (change)="onSelect($event)"
+                     name="travellingAllowances"
                         id="flexCheckDefault"
                       />
                       <label class="form-check-label" for="flexCheckDefault">
@@ -1766,8 +1932,11 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="travellingAllowancesAmount"
-                        placeholder="Travelling Allowance  Amount "
+                        (input)="hideTheTravellingAllowanceValidationMessage()"
                       /> 
+                      <div *ngIf="TravellingAllowanceAmountValidationMessage"> 
+                        <span class="text-danger">{{TravellingAllowanceAmountValidationMessage}}</span>
+                      </div>
                    </div>
                   </div>
                  
@@ -1781,7 +1950,9 @@
                         class="form-check-input"
                         type="checkbox"
                         formControlName="educationalAllowance"
-                        value="Yes"
+                      (change)="onSelect($event)"
+                      name="educationalAllowance"
+                       
                         id="flexCheckDefault"
                       />
                       <label class="form-check-label" for="flexCheckDefault">
@@ -1798,8 +1969,11 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="educationalAllowanceAmount"
-                        placeholder="Education Allowance  Amount "
+                        (input)="hideTheEducationAllowanceValidationMessage()"
                       /> 
+                      <div *ngIf="EducationAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{EducationAllowanceAmountValidationMessage}}</span>
+                      </div>
                    </div>
                   </div>
                  
@@ -1813,7 +1987,8 @@
                         class="form-check-input"
                         type="checkbox"
                         formControlName="otherAllowance"
-                        value="Yes"
+                        (change)="onSelect($event)"
+                        name="otherAllowance"
                         id="flexCheckDefault"
                       />
                       <label class="form-check-label" for="flexCheckDefault">
@@ -1830,8 +2005,12 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="otherAllowanceAmount"
-                        placeholder="Other Allowance  Amount "
+                        
+                        (input)="hideTheOtherAllowanceValidationMessage()"
                       /> 
+                      <div *ngIf="OtherAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{OtherAllowanceAmountValidationMessage}}</span>
+                      </div>
                    </div>
                   </div>
                  
@@ -1848,6 +2027,8 @@
                       id="floatingTextInput1"
                       formControlName="vehicle"
                       style="padding-top: 12px"
+                      (change)="onSelect($event)"
+                      (input)="hideTheVehicleIssuedValidationMessage()"
                     >
                       <option selected disabled [value]="'Vehicle Issued'">
                         Vehicle Issued.
@@ -1855,6 +2036,9 @@
                       <option value="Yes">Yes.</option>
                       <option value="No">No.</option>
                     </select> 
+                    <div *ngIf="VehicleIssuedValidationMessage">
+                      <span class="text-danger">{{VehicleIssuedValidationMessage}}</span>
+                    </div>
                    </div>
                   </div>
                   <div class="col-lg-6">
@@ -1865,8 +2049,15 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="vehicleNumber"
-                        placeholder="Vehicle Number"
+                       
+                        (input)="hideThevehicleNumberValidationMessage()"
                       />
+                      <div *ngIf="vehicleNumberAmountValidationMessage">
+                        <span class="text-danger">
+                          {{vehicleNumberAmountValidationMessage}}
+                        </span>
+                      </div>
+                    
                    </div>
                   </div>
                  
@@ -1881,20 +2072,39 @@
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       formControlName="vehicleModelName"
-                      placeholder="Model Name"
+
+                      (input)="hideThevehicleModelNameValidationMessageValidationMessage()"
                     /> 
+                    <div *ngIf="vehicleModelNameValidationMessage">
+                      <span class="text-danger">
+                        {{vehicleModelNameValidationMessage}}
+                      </span>
+                    </div>
+                 
+
                    </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="floatingTextInput1" class="form-control-label"> Model Year</label>
-                      <input
+                      <!-- <input
                         type="text"
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="vehicleModelYear"
                         placeholder="Model Year"
-                      />
+                      /> -->
+                      <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                      formControlName="vehicleModelYear" (input)="hideThevehicleModelYearValidationMessageValidationMessage()">
+                        <option value="" disabled selected>Select Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                      </select>
+                      <div *ngIf="vehicleModelYearValidationMessage">
+                        <span class="text-danger">
+                          {{vehicleModelYearValidationMessage}}
+                        </span>
+                      </div>
+
                    </div>
                   </div>
                  
@@ -1928,13 +2138,14 @@
                       <label for="" class="form-control-label">Vehicle Fuel</label>
                       <select
                         name="vehicleFuelCashFacility"
-                        id="cars"
+                        
                         class="form-control form-control-alternative"
-                        id="floatingTextInput1"
+                        
                         formControlName="vehicleFuelCashFacility"
                         style="padding-top: 12px"
+                        (change)="onSelect($event)"
                       >
-                        <option selected disabled [value]="'Vehicle Fuel'">
+                        <option >
                           Vehicle Fuel .
                         </option>
                         <option value="Cash">Cash.</option>
@@ -1955,8 +2166,13 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="vehicleFuelChipFacility"
-                        placeholder="Chips Details"
+                        (input)="hideThevehicleFuelChipFacilityValidationMessage()"
                       />
+                      <div *ngIf="vehicleFuelChipFacilityValidationMessage">
+                        <span class="text-danger">
+                          {{vehicleFuelChipFacilityValidationMessage}}
+                        </span>
+                      </div>
                    </div>
                   </div>
                   <div class="col-lg-6">
@@ -1967,8 +2183,13 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="cashAmount"
-                        placeholder="Cash Amount"
+                        (input)="hideThecashAmountAmountValidationMessage()"
                       />
+                      <div *ngIf="cashAmountAmountValidationMessage">
+                        <span class="text-danger">
+                          {{cashAmountAmountValidationMessage}}
+                        </span>
+                      </div>
                    </div>
                   </div>
                  
@@ -2060,11 +2281,12 @@
                       id="floatingTextInput1"
                       formControlName="electricityAllocationYesOrNo"
                       style="padding-top: 12px"
+                      (change)="onSelect($event)"
                     >
                       <option
                         selected
                         disabled
-                        [value]="'Electricity Allocation'"
+                       
                       >
                         Electricity Allocation
                       </option>
@@ -2088,8 +2310,13 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="electricityAllocationAmount"
-                        placeholder="Electricity Allocation Amount"
+                        (input)="hideTheelectricityAllocationAmountValidationMessage()"
                       />
+                      <div *ngIf="electricityAllocationAmountValidationMessage">
+                        <span class="text-danger">
+                          {{electricityAllocationAmountValidationMessage}}
+                        </span>
+                      </div>
                    </div>
                   </div>
                   <div class="col-lg-6">
@@ -2102,6 +2329,7 @@
                         id="floatingTextInput1"
                         formControlName="rentAllocationYesOrNo"
                         style="padding-top: 12px"
+                        (change)="onSelect($event)"
                       >
                         <option selected disabled [value]="'Rent Allocation'">
                           Rent Allocation
@@ -2111,6 +2339,32 @@
                       </select>
                    </div>
                   </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">
+                        Rent Allocation Amount</label
+                      >
+                      <input
+                        type="number" 
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="rentAllocationAmount"
+                        (input)="hiderentAllocationAmountValidationMessage()"
+                        
+                      />
+                      <div *ngIf="rentAllocationAmountValidationMessage">
+                        <span class="text-danger">
+                          {{rentAllocationAmountValidationMessage}}
+                        </span>
+                      </div>
+                   </div>
+                  </div>
+                 
                  
                   
                 </div>
@@ -2169,6 +2423,7 @@
                       id="floatingTextInput1"
                       formControlName="flightFacilities"
                       style="padding-top: 12px"
+                      (change)="onSelect($event)"
                     >
                       <option selected disabled [value]="'Flight Facilities'">
                         Flight Facilities
@@ -2188,6 +2443,7 @@
                         id="floatingTextInput1"
                         formControlName="howMuchTime"
                         style="padding-top: 12px"
+                        (input)="hidehowMuchTimetValidationMessage()"
                       >
                         <option
                           selected
@@ -2202,6 +2458,12 @@
                         <option value="Once in a Year">Once in a Year.</option>
                         <option value="Once in 2 Year">Once in 2 Year.</option>
                       </select>
+
+                      <div *ngIf="howMuchTimetValidationMessage">
+                        <span class="text-danger">
+                          {{howMuchTimetValidationMessage}}
+                        </span>
+                      </div>
                    </div>
                   </div>
                  
@@ -2242,7 +2504,7 @@
                       'Yes'
                     "
                   >
-                    <label for="floatingTextInput1">
+                    <label for="floatingTextInput1" class="form-control-label">
                       Health Insurance Amount</label
                     >
                     <input
@@ -2250,8 +2512,15 @@
                       class="form-control form-control-alternative"
                       id="floatingTextInput1"
                       formControlName="maximumAmountGiven"
-                      placeholder="Health Insurance Amount"
+                      (input)="hidemaximumAmountGivenValidationMessage()"
+                      
                     />
+                    
+                    <div *ngIf="maximumAmountGivenValidationMessage">
+                      <span class="text-danger">
+                        {{maximumAmountGivenValidationMessage}}
+                      </span>
+                    </div>
                   </div>
                    </div>
                   </div>
@@ -2269,7 +2538,7 @@
                       'Yes'
                     "
                   >
-                    <label for="">Family Health Insurance</label>
+                    <label for="" class="form-check-label" class="form-control-label">Family Health Insurance</label>
                     <select
                       name="familyHealthInsuranceGivenOrNot"
                       id="cars"
@@ -2301,7 +2570,7 @@
                         'Yes'
                       "
                     >
-                      <label for="">Type Family Health Insurance</label>
+                      <label for="" class="form-control-label">Type Family Health Insurance</label>
                       <select
                         name="familyHealthInsuranceType"
                         id="cars"
@@ -2309,6 +2578,7 @@
                         id="floatingTextInput1"
                         formControlName="familyHealthInsuranceType"
                         style="padding-top: 12px"
+                        (input)="hidefamilyHealthInsuranceTypeValidationMessage()"
                       >
                         <option
                           selected
@@ -2324,12 +2594,27 @@
                           FOR SPOUSE,CHILDREN AND PARENTS.
                         </option>
                       </select>
+                      
+                      <div *ngIf="familyHealthInsuranceTypeValidationMessage">
+                        <span class="text-danger">
+                          {{familyHealthInsuranceTypeValidationMessage}}
+                        </span>
+                      </div>
                     </div>
                    </div>
                   </div>
                  
                   
                 </div>
+
+
+
+
+
+                
+              </div>
+              <div *ngIf="step == 7 ">
+                
                 <div class="row">
                   
                   <div class="col-lg-6">
@@ -2340,6 +2625,7 @@
                         class="form-control form-control-alternative"
                         id="floatingTextInput1"
                         formControlName="joiningDate"
+                        [min]="minDate"
                         placeholder="Joining Date "
                       />
                    </div>
@@ -2408,12 +2694,12 @@
                   
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label for="" class="form-control-label">Levels </label>
+                      <label for="" class="form-control-label">Levels <span class="text-danger"> *</span> </label>
                     <select
-                      name="ReferedBy"
+                      name="levelId"
                       id="cars"
                       class="form-control form-control-alternative"
-                      formControlName="ReferedBy"
+                      
                       (change)="onDesignation($event)"
                       id="floatingTextInput1"
                       style="padding-top: 12px; padding-left: 8px"
@@ -2422,11 +2708,14 @@
                       <option   *ngFor="let data of get_all_level;"  [value]="data.levelId">{{data.levelName}}</option>
                       
                     </select>
+                    <!-- <div *ngIf="postForm.get('levelId').touched && postForm.get('levelId').errors?.required" class="text-danger">
+                      Levels is required.
+                    </div> -->
                    </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label for="" class="form-control-label">Designation </label>
+                      <label for="" class="form-control-label">Designation  <span class="text-danger"> *</span></label>
                     <select
                       name="designationId"
                       id="cars"
@@ -2440,20 +2729,23 @@
                       <option *ngFor="let data of designationByLevelId" [value]="data.designationId">{{data.designationName}}</option>
                       
                     </select>
+                    <div *ngIf="postForm.get('designationId').touched && postForm.get('designationId').errors?.required" class="text-danger">
+                      Designation is required.
+                    </div>
                    </div>
                   </div>
                 
                  
                   
                 </div>
-                <!-- your-component.component.html -->
-<div class="row">
+               
+                <div class="row">
 
 
   <!-- Department Selection -->
   <div class="col-lg-6">
     <div class="form-group">
-      <label for="jobdepartment" class="form-control-label">Department</label>
+      <label for="jobdepartment" class="form-control-label">Department <span class="text-danger"> *</span></label>
       <select class="form-control form-control-alternative" id="jobdepartment" formControlName="jobdepartment">
         <option selected disabled value="">Select Department</option>
         <option *ngFor="let department of department" [value]="department.departmentId">{{ department.departmentName }}</option>
@@ -2465,27 +2757,29 @@
   </div>
   <div class="col-lg-6">
     <div class="form-group">
-      <label for="floatingSelect" class="form-control-label">Posted Location</label>
+      <label for="floatingSelect" class="form-control-label">Posted Location <span class="text-danger"> *</span></label>
       <select class="form-control form-control-alternative" id="floatingSelect" formControlName="postedLocation">
         <option value="" disabled selected>Select a location</option>
         <option *ngFor="let location of locations" [value]="location.locationId">{{ location.name }}</option>
       </select>
+      <div *ngIf="postForm.get('postedLocation').touched && postForm.get('postedLocation').errors?.required" class="text-danger">
+        Posted Location is required.
+      </div>
     </div>
     
 
   </div>
-</div>
+                </div>
 
-                
               </div>
                 <div class="row">
                   <div class="col-lg-4"  *ngIf="step != 1">
                     <button
                   type="button"
-                  class="btn btn-lg w-75 h-100 text-light "
+                  class="btn btn-lg w-75 h-100 text-light previousBtn  "
                   (click)="previous()"
                 >
-                  <h3>Previous</h3>
+                  <h3 class="text-light">Previous</h3>
                 </button>
                   </div>
 
@@ -2502,50 +2796,29 @@
                   </div> -->
                   
 
-                  <div class="col-lg-4" *ngIf="step !== 6">
+                  <div class="col-lg-4" *ngIf="step !== 7">
+                    <!-- <button
+                      type="button"
+                      class="btn w-75 btn-primary"
+                      (click)="next()"
+                      
+                      [disabled]="!getPostFormControls.email.value || postForm.get('email').invalid || !postForm.get('phoneCode').value || !postForm.get('personalContactNo').value"
+                      > -->
                     <button
                       type="button"
                       class="btn w-75 btn-primary"
                       (click)="next()"
-                      [disabled]="!getPostFormControls.email.value || postForm.get('email').invalid"
-                    >
+                      >
                       <h3 class="text-light">Next</h3>
                     </button>
                 </div>
-                
-                  
-                  
-                  
-                
-                
-
-                  <!-- <div class="col-lg-4" *ngIf="step != 6">
-                    <button
-                        type="button"
-                        class="btn w-75 btn-primary"
-                        (click)="next()"
-                        [disabled]="postForm.get('email').invalid || postForm.get('email').pristine"
-                    >
-                        <h3 class="text-light">Next</h3>
-                    </button>
-                </div> -->
-                
-                  <!-- <div class="col-lg-4" *ngIf="step != 6">
-                    <button
-                    type="button"
-                    class="btn w-75 btn-primary   "
-                    (click)="next()"
-                  >
-                    <h3 class="text-light">Next</h3>
-                  </button>
-                  </div> -->
-
-                  <div class="col-lg-4" *ngIf="step == 6">
+            
+                  <div class="col-lg-4" *ngIf="step == 7">
                     <button
                     type="submit"
                     class="btn btn-lg  text-light "
                   >
-                    <h3>Submit</h3>
+                    <h3 class="text-light">Submit</h3>
                   </button>
                   </div>
                 </div>

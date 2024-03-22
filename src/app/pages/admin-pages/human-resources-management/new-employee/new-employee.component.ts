@@ -25,21 +25,23 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-new-employee',
   templateUrl: './new-employee.component.html',
   styleUrls: ['./new-employee.component.scss'],
-  providers: [DatePipe] 
+  providers: [DatePipe]
 })
 export class NewEmployeeComponent implements OnInit {
   // public minDate:any;
-  locations:any
-public designationByLevelId:any
+  maxDate: string;
+  minDate: string;
+  locations: any
+  public designationByLevelId: any
   public currentDate!: string;
-  public levelId:any;
-  public step:any=1;
+  public levelId: any;
+  public step: any = 1;
   public postForm!: FormGroup;
   public Countries: any[] = []
-public get_all_level:any;
-years: number[] = [];
-  constructor(  private toastr: ToastrService,private router:Router,  private apiService: ServicesService, private formBuilder: FormBuilder, private datePipe: DatePipe   ) {
-    
+  public get_all_level: any;
+  years: number[] = [];
+  constructor(private toastr: ToastrService, private router: Router, private apiService: ServicesService, private formBuilder: FormBuilder, private datePipe: DatePipe) {
+
     // const newDate= new Date;
     // this.minDate=this.datePipe.transform(newDate,'yyyy-MM-dd')
 
@@ -57,25 +59,25 @@ years: number[] = [];
     switch (event.target.name) {
       case 'passportSizePhoto':
 
-      if (file.size > 102400) { // 100KB in bytes
-        // alert('File size must be less than 100 KB!');
-        this.toastr.error('File size must be less than 100 KB!')
-        event.target.value = '';
-        return;
-      }
-      this.postForm?.patchValue({
-        [event.target.name]: file
-      });
-      break;
-        // this.postForm?.patchValue({
-        //   passportSizePhoto: file
-        // })
-        // break;
+        if (file.size > 102400) { // 100KB in bytes
+          // alert('File size must be less than 100 KB!');
+          this.toastr.error('File size must be less than 100 KB!')
+          event.target.value = '';
+          return;
+        }
+        this.postForm?.patchValue({
+          [event.target.name]: file
+        });
+        break;
+      // this.postForm?.patchValue({
+      //   passportSizePhoto: file
+      // })
+      // break;
       case 'scannedCopyOfLincense':
         if (file.size > 102400) { // 100KB in bytes
           // alert('File size must be less than 100 KB!');
           this.toastr.error('File size must be less than 100 KB!')
-        event.target.value = '';
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -89,7 +91,7 @@ years: number[] = [];
         if (file.type !== 'application/pdf') {
           // alert('Only PDF files are allowed!');
           this.toastr.error('Only PDF files are allowed!')
-        
+
           return;
         }
         // Check if the file size is greater than 2MB
@@ -293,13 +295,13 @@ years: number[] = [];
           // alert('Only PDF files are allowed!');
           this.toastr.error('Only PDF files are allowed!')
           event.target.value = '';
-          
+
           return;
         }
         // Check if the file size is greater than 2MB
         if (file.size > 2097152) { // 2MB in bytes
-           this.toastr.error('Only PDF files are allowed!')
-           event.target.value = '';
+          this.toastr.error('Only PDF files are allowed!')
+          event.target.value = '';
           return;
         }
         this.postForm?.patchValue({
@@ -351,13 +353,13 @@ years: number[] = [];
       callback(base64String);
     };
   }
- public department:any
- 
+  public department: any
 
 
-  public array:any=[];
-  public professionalArray:any=[];
-  public achivementArray:any=[];
+
+  public array: any = [];
+  public professionalArray: any = [];
+  public achivementArray: any = [];
   //method for selecting and convert it into base64 url
   onFileSelected(event: any, index: any) {
     switch (event.target.name) {
@@ -365,77 +367,73 @@ years: number[] = [];
         // var fileObject;;
         console.log(event.target.files);
         const file = event.target.files[0];
-        this.array[index]=file;
+        this.array[index] = file;
         console.log(this.array);
-        // const control = this.postForm.value.othersQualifications.at(index);
-        // control.ScannedCopyOfOther = file;
-      //   fileObject = {
-      //     'lastModified'     : file.lastModified,
-      //     'lastModifiedDate' : file.lastModifiedDate,
-      //     'name'             : file.name,
-      //     'size'             : file.size,
-      //     'type'             : file.type
-      //  };
-        // then use JSON.stringify on File object
-        // this.fileToBase64(file, function (base64String: any) {
-        //   const serializedFile = btoa(base64String);
-        //   control.ScannedCopyOfOther = serializedFile;
-        // });
+
         break;
-        case 'ScannedCopyOfCourseCompleted':
-          console.log(event.target.files);
-          const proffile = event.target.files[0];
-          this.professionalArray[index]=proffile;
-          console.log(this.professionalArray);
+      case 'ScannedCopyOfCourseCompleted':
+        console.log(event.target.files);
+        const proffile = event.target.files[0];
+        this.professionalArray[index] = proffile;
+        console.log(this.professionalArray);
 
-          break
+        break
 
-          case 'ScanCopyOfAchivements':
-            console.log(event.target.files);
-          const achivefile = event.target.files[0];
-          this.achivementArray[index]=achivefile;
-          console.log(this.achivementArray);
-          break
+      case 'ScanCopyOfAchivements':
+        console.log(event.target.files);
+        const achivefile = event.target.files[0];
+        this.achivementArray[index] = achivefile;
+        console.log(this.achivementArray);
+        break
 
 
     }
-    
+
 
   }
-  
+
   ngOnInit() {
+
+    const currentDate = new Date();
+    const maxYear = currentDate.getFullYear() - 5;
+    currentDate.setFullYear(maxYear);
+    this.maxDate = currentDate.toISOString().split('T')[0];
+    console.log(this.maxDate)
+
+    this.minDate = new Date().toISOString().split('T')[0];
+    console.log(this.minDate);
 
     const currentYear = new Date().getFullYear();
     for (let i = 1970; i <= currentYear; i++) {
       this.years.push(i);
     }
 
-    this.apiService.getAllLocation().subscribe((successResponse)=>{
-      this.locations=successResponse;
+    this.apiService.getAllLocation().subscribe((successResponse) => {
+      this.locations = successResponse;
       console.log(this.locations);
 
-    },((errorResponse)=>{
+    }, ((errorResponse) => {
       console.log(errorResponse);
     }))
-    
 
 
-    this.apiService.get_all__job_levels().subscribe((successResponse)=>{
+
+    this.apiService.get_all__job_levels().subscribe((successResponse) => {
       console.log(successResponse);
-      this.get_all_level=successResponse;
+      this.get_all_level = successResponse;
     })
 
-    this.apiService.getDepart().subscribe((succ)=>{
-      this.department=succ
+    this.apiService.getDepart().subscribe((succ) => {
+      this.department = succ
       console.log(this.department)
     })
-    
+
     this.Countries = Country.getAllCountries()
     console.log(this.Countries)
-    
+
     this.initPostForm()
   }
-  public employeeAge: number = 0;
+  public employeeAge: number;
   public getAge(event: any) {
     let enterDob: string = event.target.value;
     let dob_date = enterDob.split('-')
@@ -454,7 +452,263 @@ years: number[] = [];
 
   // To automatically calculate the age based on the date of birth, bind the getAge function to the input event of the date of birth field in your template. For example:
   public onSelect(event: any) {
+    console.log(event.target.name)
+    console.log(this.postForm.controls["vehicleFuelCashFacility"].value);
+    
     switch (event.target.name) {
+
+      case "status":
+      if (this.postForm.controls["status"].value == "Done") {
+          this.managerApprovalforbgValidationMessage = ''
+          this.managerApprovalNameforbgValidationMessage = ''
+          // this.vehicleNumberAmountValidationMessage = ''
+          this.postForm.patchValue({
+            managerApproval: '',
+            managerName: '',
+            remark: '',
+          })
+          console.log("inside the Status")
+        }
+        else if (this.postForm.controls["status"].value == "Pending"){
+          this.doneByValidationMessage='';
+          this.internalConcernedManagerValidationMessage=''
+          this.externalConcernedManagerValidationMessage=''
+          this.externalPostValidationMessage=''
+          this.externalCompanyNameValidationMessage=''
+          this.externalPhoneCodeValidationMessage=''
+          this.externalPhoneNoValidationMessage=''
+          this.postForm.patchValue({
+            doneBy: '',
+            internalConcernedManager: '',
+            externalConcernedPerson: '',
+            externalPost:'',
+            externalCompanyName:'',
+            externalPhoneCode:'',
+            externalPhoneNo:''
+
+          })
+        }
+
+        break;
+      case "doneBy":
+      if (this.postForm.controls["doneBy"].value == "External") {
+          this.internalConcernedManagerValidationMessage = ''
+        
+          this.postForm.patchValue({
+            internalConcernedManager: '',
+           
+          })
+          // console.log("inside the houseRent")
+        }else if (this.postForm.controls["doneBy"].value == "Internal"){
+          this.externalConcernedManagerValidationMessage = ''
+          this.externalPostValidationMessage = ''
+          this.externalCompanyNameValidationMessage = ''
+          this.externalPhoneCodeValidationMessage = ''
+          this.externalPhoneNoValidationMessage = ''
+          this.postForm.patchValue({
+            externalConcernedPerson: '',
+            externalPost: '',
+            externalCompanyName: '',
+            externalPhoneCode: '',
+            externalPhoneNo: ''
+           
+          })
+
+        }
+
+        break;
+      case "vehicleFuelCashFacility":
+        if (this.postForm.controls["vehicleFuelCashFacility"].value =="Cash") {
+        console.log("inside the cash")
+          this.vehicleFuelChipFacilityValidationMessage = ''
+          this.postForm.get('vehicleFuelChipFacility')?.disable();
+          this.postForm.patchValue({
+            vehicleFuelChipFacility: '',
+          
+          })
+       
+        }else{
+          this.postForm.get('vehicleFuelChipFacility')?.enable();
+
+        }
+        if (this.postForm.controls["vehicleFuelCashFacility"].value =="Chip"){
+          console.log("inside the chip")
+          this.cashAmountAmountValidationMessage=''
+          this.postForm.get('cashAmount')?.disable();
+          this.postForm.patchValue({ 
+            cashAmount:''
+          })
+
+        }else{
+
+        }
+
+        break;
+      case "electricityAllocationYesOrNo":
+      if (this.postForm.controls["electricityAllocationYesOrNo"].value == "No") {
+          this.electricityAllocationAmountValidationMessage = ''
+          this.postForm.get('electricityAllocationAmount')?.disable();
+          this.postForm.patchValue({
+            electricityAllocationAmount: '',
+           
+          })
+      
+        }else{
+          this.postForm.get('electricityAllocationAmount')?.enable();
+
+        }
+
+        break;
+      case "rentAllocationYesOrNo":
+      if (this.postForm.controls["rentAllocationYesOrNo"].value == "No") {
+          this.rentAllocationAmountValidationMessage = ''
+          this.postForm.get('rentAllocationAmount')?.disable();
+          this.postForm.patchValue({
+            rentAllocationAmount: '',
+           
+          })
+      
+        }else{
+          this.postForm.get('rentAllocationAmount')?.enable();
+
+        }
+
+        break;
+      case "flightFacilities":
+      if (this.postForm.controls["flightFacilities"].value == "No") {
+          this.howMuchTimetValidationMessage = ''
+          this.postForm.get('howMuchTime')?.disable();
+          this.postForm.patchValue({
+            howMuchTime: '',
+           
+          })
+      
+        }else{
+          this.postForm.get('howMuchTime')?.enable();
+
+        }
+
+        break;
+      case "healthInsuranceCoverage":
+      if (this.postForm.controls["healthInsuranceCoverage"].value == "No") {
+          this.maximumAmountGivenValidationMessage = ''
+          this.postForm.get('maximumAmountGiven')?.disable();
+          this.postForm.patchValue({
+            maximumAmountGiven: '',
+           
+          })
+      
+        }else{
+          this.postForm.get('maximumAmountGiven')?.enable();
+
+        }
+
+        break;
+      case "familyHealthInsuranceGivenOrNot":
+      if (this.postForm.controls["familyHealthInsuranceGivenOrNot"].value == "No") {
+          this.familyHealthInsuranceTypeValidationMessage = ''
+          this.postForm.get('familyHealthInsuranceType')?.disable();
+          this.postForm.patchValue({
+            familyHealthInsuranceType: '',
+           
+          })
+      
+        }else{
+          this.postForm.get('familyHealthInsuranceType')?.enable();
+
+        }
+
+        break;
+      case "vehicle":
+      if (this.postForm.controls["vehicle"].value == "No") {
+          this.vehicleModelYearValidationMessage = ''
+          this.vehicleModelNameValidationMessage = ''
+          this.vehicleNumberAmountValidationMessage = ''
+          this.postForm.patchValue({
+            vehicleNumber: '',
+            vehicleModelName: '',
+            vehicleModelYear: '',
+          })
+          console.log("inside the houseRent")
+        }
+
+        break;
+      case "houseRentAllowance":
+      if (this.postForm.controls["houseRentAllowance"].value == false) {
+          this.HouseRentAmountValidationMessage = ''
+          this.postForm.patchValue({
+            houseRentAmount: ''
+          })
+          // console.log("inside the houseRent")
+        }
+
+        break;
+      case "foodAllowance":
+        if (this.postForm.controls["foodAllowance"].value == false) {
+          this.FoodAllowanceAmountValidationMessage = ''
+          this.postForm.patchValue({
+            foodAllowanceAmount: ''
+          })
+          // this.postForm.controls['foodAllowanceAmount'].value === ''
+          // console.log("inside the foodAllwance")
+        }
+
+        break;
+      case "otherAllowance":
+        if (this.postForm.controls["otherAllowance"].value == false) {
+          this.OtherAllowanceAmountValidationMessage = ''
+          this.postForm.patchValue({
+            otherAllowanceAmount: ''
+          })
+          // this.postForm.controls['foodAllowanceAmount'].value === ''
+          // console.log("inside the foodAllwance")
+        }
+
+        break;
+      case "educationalAllowance":
+        if (this.postForm.controls["educationalAllowance"].value == false) {
+          this.EducationAllowanceAmountValidationMessage = ''
+          this.postForm.patchValue({
+            educationalAllowanceAmount: ''
+          })
+          // this.postForm.controls['foodAllowanceAmount'].value === ''
+          // console.log("inside the foodAllwance")
+        }
+
+        break;
+      case "travellingAllowances":
+        if (this.postForm.controls["travellingAllowances"].value == false) {
+          this.TravellingAllowanceAmountValidationMessage = ''
+          this.postForm.patchValue({
+            travellingAllowancesAmount: ''
+          })
+          // this.postForm.controls['foodAllowanceAmount'].value === ''
+          // console.log("inside the foodAllwance")
+        }
+
+        break;
+      case "uniformAllowance":
+        if (this.postForm.controls["uniformAllowance"].value == false) {
+          this.UniformAllowanceAmountValidationMessage = ''
+          this.postForm.patchValue({
+            uniformAllowanceAmount: ''
+          })
+          // this.postForm.controls['foodAllowanceAmount'].value === ''
+          // console.log("inside the foodAllwance")
+        }
+
+        break;
+      case "vehicleAllowance":
+        if (this.postForm.controls["vehicleAllowance"].value == false) {
+          this.VehicleAllowanceAmountValidationMessage = ''
+          this.postForm.patchValue({
+            vehicleAllowanceAmount: ''
+          })
+          // this.postForm.controls['foodAllowanceAmount'].value === ''
+          // console.log("inside the foodAllwance")
+        }
+
+        break;
       case "workedInUAE":
         if (this.postForm.controls['workedInUAE'].value === 'No') {
           this.postForm.get('EmiratesID')?.disable();
@@ -463,10 +717,24 @@ years: number[] = [];
         }
         break;
       case "VisaType":
-        if (this.postForm.controls['VisaType'].value === 'Visit Visa') {
+        if (this.postForm.controls['VisaType'].value === 'Tourist Visa') {
           this.postForm.get('workVisaEmirateId')?.disable();
+          this.postForm.get('categoryOfVisa')?.disable();
+          this.postForm.get('siGlobalWorkVisaCompany')?.disable();
+          this.postForm.patchValue({
+            workVisaEmirateId: '',
+            categoryOfVisa: '',
+            siGlobalWorkVisaCompany: ''
+          });
         } else {
           this.postForm.get('workVisaEmirateId')?.enable();
+          this.postForm.get('categoryOfVisa')?.enable();
+          this.postForm.get('siGlobalWorkVisaCompany')?.enable();
+          // this.postForm.patchValue({
+          //   workVisaEmirateId: '',
+          //   categoryOfVisa: '',
+          //   siGlobalWorkVisaCompany: ''
+          // });
         }
         break;
       case "categoryOfVisa":
@@ -479,6 +747,9 @@ years: number[] = [];
       case "managerApproval":
         if (this.postForm.controls['managerApproval'].value === 'Not Approved') {
           this.postForm.get('managerName')?.disable();
+          this.postForm.patchValue({
+            managerName:''
+          })
         } else {
           this.postForm.get('managerName')?.enable();
         }
@@ -486,8 +757,22 @@ years: number[] = [];
       case "criminalRecords":
         if (this.postForm.controls['criminalRecords'].value === 'No') {
           this.postForm.get('RecordSheet')?.disable();
+          this.RecordSheetValidationMessage=''
+          this.approvalsheetValidationMessage=''
+
+          this.postForm.patchValue({
+            RecordSheet:'',
+            punishmentForImprisonmentApproval:'',
+            approvalsheet:'',
+          })
         } else {
           this.postForm.get('RecordSheet')?.enable();
+          this.DeclarationValidationMessage=''
+
+          this.postForm.patchValue({
+            Declaration:'',
+          
+          })
         }
         break;
 
@@ -520,6 +805,11 @@ years: number[] = [];
       case 'drivinglicense':
         if (this.postForm.controls['drivinglicense'].value === 'No') {
           this.postForm.get('scannedCopyOfLincense')?.disable();
+          this.LincenseScanCopyValidationMessage = ''
+          this.postForm.patchValue({
+            scannedCopyOfLincense: '',
+            licenseType:'Type Of LincenserentAllocationYesOrNo'
+          })
         } else {
           this.postForm.get('scannedCopyOfLincense')?.enable();
         }
@@ -548,10 +838,11 @@ years: number[] = [];
 
 
 
-  //method for initializing the form 
+  //method forinitPostForm initializing the form 
   public initPostForm() {
     this.postForm = this.formBuilder.group({
-      designationId:[''],
+      // levelId:['',Validators.required],
+      designationId: ['', Validators.required],
       namePrefix: 'Prefix',
       firstName: '',
       middleName: '',
@@ -563,13 +854,13 @@ years: number[] = [];
       personalContactNo: '',
       citizenship: 'Citizenship',
       passportIssuingCountry: 'Passport Issuing Country',
-      email: ['',Validators.required],  // yaha thak done
+      email: [''],
       passportSizePhoto: [''],
       passportNumber: '',
       passportScannedCopy: [''],
       passportExpiryDate: '',
       drivinglicense: 'Driving License of UAE',
-      licenseType:'Type Of Lincense',
+      licenseType: 'Type Of Lincense',
       scannedCopyOfLincense: [''],
       ownvehicle: 'Personal Vehicle',
       VisaType: ['Type Of Visa'],
@@ -579,7 +870,7 @@ years: number[] = [];
       visaIssueyDate: '',
       visaExpiryDate: '',
       VisaScannedCopyOfID: [''],//yaha tak second step ho gya hai 
-      
+
 
       // education Qualification
 
@@ -628,7 +919,7 @@ years: number[] = [];
       relativenamePrefix: [''],
       RFirstname: [''],
       Rmiddlename: [''],
-      Rlastname:[''],
+      Rlastname: [''],
       relationship: [''],
       RphoneCode: [''],
       Rcontactno: [''],
@@ -640,7 +931,7 @@ years: number[] = [];
       EmiratesID: '',
 
       DegreeAttestation: '',
-      
+
 
       diplomaIssuingAuthority: '',
       diplomaMarksOrGrade: '',
@@ -675,7 +966,7 @@ years: number[] = [];
 
       // achievementsRewards: '',
       // ScanCopyOfAchivements: this.formBuilder.array([]),
-      empAchievements : this.formBuilder.array([]),
+      empAchievements: this.formBuilder.array([]),
       lastWithdrawnSalary: null,
       SalaryScannedCopy: [null],
 
@@ -720,22 +1011,22 @@ years: number[] = [];
       trainerFeedback: '',// yehi bhi employee fill krga
       // jobs Details
       jobPostDesignation: '',
-      jobdepartment: ['',Validators.required],
+      jobdepartment: ['', Validators.required],
       companyEmailIdProvided: '',
       companyEmailId: '',
       jobLevel: '',
-      postedLocation: '',
+      postedLocation: ['', Validators.required],
       // payscale
       basicAllowance: '',
-      houseRentAllowance: [false] ,
+      houseRentAllowance: [false],
       // houseRentAllowance: '',
-      houseRentAmount: ['', this.allowanceAmountValidator('houseRentAllowance')],
+      houseRentAmount: [null],
       // houseRentAmount: '',
-      foodAllowance: '',
+      foodAllowance: [false],
       foodAllowanceAmount: '',
-      vehicleAllowance: '',
+      vehicleAllowance: [false],
       vehicleAllowanceAmount: '',
-      uniformAllowance: '',
+      uniformAllowance: [false],
       uniformAllowanceAmount: '',
       travellingAllowances: '',
       travellingAllowancesAmount: '',
@@ -750,7 +1041,7 @@ years: number[] = [];
       isVehicleNewOrPreowned: '',
       vehicleFuelCashFacility: '',
       vehicleFuelChipFacility: '',
-      cashAmount:'',
+      cashAmount: '',
 
       accommodationYesOrNo: '',
       isShredOrSeparate: '',
@@ -772,24 +1063,29 @@ years: number[] = [];
       familyHealthInsuranceType: '',
       joiningDate: '',
       punchingMachineYesOrNo: '',
-      ReferedBy:'',
-      ReferenceName:'',
+      ReferedBy: '',
+      ReferenceName: '',
       // role:['',Validators.required],
-      onboardHrApprovalStatus:['pending']
+      onboardHrApprovalStatus: ['pending']
     })
 
   }
 
-  allowanceAmountValidator(allowanceControlName: string): any {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const checkboxValue = control?.parent?.get(allowanceControlName)?.value;
-      const amountValue = control.value;
-      if (checkboxValue && !amountValue) {
-        return { required: true };
-      }
-      return null;
-    };
-  }
+
+  // updateHouseRentAmountValidity() {
+  //   this.postForm.get('houseRentAmount')?.updateValueAndValidity();
+  // }
+
+  // allowanceAmountValidator(allowanceControlName: string): any {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const checkboxValue = control?.parent?.get(allowanceControlName)?.value;
+  //     const amountValue = control.value;
+  //     if (checkboxValue && !amountValue) {
+  //       return { required: true };
+  //     }
+  //     return null;
+  //   };
+  // }
 
 
   get empAchievements() {
@@ -797,16 +1093,16 @@ years: number[] = [];
   }
 
   addempAchievementsField() {
-    
+
     const achievementsRewardsfieldGroup = this.formBuilder.group({
-      achievementRewardsName :''
+      achievementRewardsName: ''
       // ScannedCopyOfOther: [],
     });
     this.empAchievements.push(achievementsRewardsfieldGroup);
   }
 
 
-  
+
 
   removeempAchievementsField(index: number) {
     this.empAchievements.removeAt(index);
@@ -858,30 +1154,908 @@ years: number[] = [];
     this.professionalQualifications.removeAt(index);
   }
 
-public next(){
-  this.step=this.step+1
-  console.log(this.step)
-}
+  hideThePrefixValidationMessage() {
+    this.PrefixValidationMessage = ''
+  }
+  hideThefirstValidationMessage() {
+    this.firstNameValidationMessage = ''
+  }
+  hideThelastValidationMessage() {
+    this.lastNameValidationMessage = '';
+  }
+  hideTheemailValidationMessage() {
+    this.emailValidationMessage = ';'
+  }
+  hideThePhonecodeValidationMessage() {
+    this.phoneCodeValidationMessage = '';
+  }
+  hideThePersonalContactValidationMessage() {
+    this.personalContactValidationMessage = ''
+  }
+  hideThedobValidationMessage() {
+    this.dobValidationMessage = ''
+  }
+  hideThepassportSizePhotoValidationMessage() {
+    this.passportSizePhotoValidationMessage = ''
+  }
+  hideThepassportNumberValidationMessage() {
+    this.passportNumberValidationMessage = ''
+  }
+  hideThepassportScanCopyValidationMessage() {
+    this.passportScanCopyValidationMessage = ''
+  }
+  hideTheLincenseScanCopyValidationMessage() {
+    this.LincenseScanCopyValidationMessage = '';
+  }
+  hideThebgStatusValidationMessage() {
+    this.bgStatusValidationMessage = '';
+  }
+  hideThedoneByValidationMessage() {
+
+    this.doneByValidationMessage = ''
+  }
+  hideTheinternalConcernedManagerValidationMessage() {
+    this.internalConcernedManagerValidationMessage = ''
+  }
+  hideTheexternalConcernedManagerValidationMessage() {
+    this.externalConcernedManagerValidationMessage = ''
+  }
+  hideTheexternalPostManagerValidationMessage() {
+    this.externalPostValidationMessage = ''
+  }
+  hideTheexternalCompanyNameValidationMessage() {
+    this.externalCompanyNameValidationMessage = ''
+  }
+  hideTheexternalPhoneCodeValidationMessage() {
+    this.externalPhoneCodeValidationMessage = ''
+  }
+  hideTheexternalPhoneNoValidationMessage() {
+    this.externalPhoneNoValidationMessage = ''
+  }
+  hideThemanagerApprovalforbgValidationMessage() {
+    this.managerApprovalforbgValidationMessage = ''
+  }
+  hideThemanagerApprovalNameforbgValidationMessage() {
+    this.managerApprovalNameforbgValidationMessage = ''
+  }
+  //for validation variable 
+  ValidationMessage = '';
+  PrefixValidationMessage = '';
+  firstNameValidationMessage = ''
+  lastNameValidationMessage = ''
+
+  emailValidationMessage = ''
+  phoneCodeValidationMessage = ''
+  personalContactValidationMessage = ''
+  dobValidationMessage = ''
+  passportSizePhotoValidationMessage = ''
+  passportNumberValidationMessage = ''
+  passportScanCopyValidationMessage = ''
+  LincenseScanCopyValidationMessage = ''
 
 
 
-public previous(){
-  this.step=this.step-1;
-}
+  //step 2
+  bgStatusValidationMessage = ''
+  doneByValidationMessage = ''
+  internalConcernedManagerValidationMessage = ''
+  externalConcernedManagerValidationMessage = ''
+  externalPostValidationMessage = ''
+  externalCompanyNameValidationMessage = ''
+  externalPhoneCodeValidationMessage=''
+  externalPhoneNoValidationMessage=''
+  managerApprovalforbgValidationMessage=''
+  managerApprovalNameforbgValidationMessage=''
+
+
+
+
+
+
+
+
+  //step4
+  hideThecriminalRecordsValidationMessage() {
+    this.criminalRecordsValidationMessage = ''
+  }
+  hideTheDeclarationValidationMessage() {
+    this.DeclarationValidationMessage = ''
+  }
+  hideTheRecordSheetValidationMessage() {
+    this.RecordSheetValidationMessage = ''
+  }
+  hideTheapprovalsheetValidationMessage() {
+    this.approvalsheetValidationMessage = ''
+  }
+
+  criminalRecordsValidationMessage=''
+  DeclarationValidationMessage=''
+  RecordSheetValidationMessage=''
+  approvalsheetValidationMessage=''
+
+
+
+
+
+
+  hideTheHouseRentValidationMessage() {
+    this.HouseRentAmountValidationMessage = '';
+  }
+  hideTheFoodAllowanceValidationMessage() {
+    this.FoodAllowanceAmountValidationMessage = '';
+  }
+  hideTheVehicleAllowanceValidationMessage() {
+    this.VehicleAllowanceAmountValidationMessage = '';
+  }
+  hideTheUniformAllowanceValidationMessage() {
+    this.UniformAllowanceAmountValidationMessage = '';
+  }
+  hideTheTravellingAllowanceValidationMessage() {
+    this.TravellingAllowanceAmountValidationMessage = '';
+  }
+  hideTheEducationAllowanceValidationMessage() {
+    this.EducationAllowanceAmountValidationMessage = '';
+  }
+  hideTheOtherAllowanceValidationMessage() {
+    this.OtherAllowanceAmountValidationMessage = '';
+  }
+  hideTheVehicleIssuedValidationMessage() {
+    this.VehicleIssuedValidationMessage = '';
+  }
+  hideThevehicleNumberValidationMessage() {
+    this.vehicleNumberAmountValidationMessage = '';
+  }
+  hideThevehicleModelNameValidationMessageValidationMessage() {
+    this.vehicleModelNameValidationMessage = '';
+  }
+  hideThevehicleModelYearValidationMessageValidationMessage() {
+    this.vehicleModelYearValidationMessage = '';
+  }
+  //  RentAmountValidationMessage=''
+  HouseRentAmountValidationMessage = ''
+  FoodAllowanceAmountValidationMessage = ''
+  VehicleAllowanceAmountValidationMessage = ''
+  UniformAllowanceAmountValidationMessage = ''
+  TravellingAllowanceAmountValidationMessage = ''
+  EducationAllowanceAmountValidationMessage = ''
+  OtherAllowanceAmountValidationMessage = ''
+  VehicleIssuedValidationMessage = ''
+  vehicleNumberAmountValidationMessage = ''
+  vehicleModelNameValidationMessage = ''
+  vehicleModelYearValidationMessage = ''
+
+
+
+
+
+  // step 7
+  hideThecashAmountAmountValidationMessage() {
+    this.cashAmountAmountValidationMessage = '';
+  }
+  hideThevehicleFuelChipFacilityValidationMessage() {
+    this.vehicleFuelChipFacilityValidationMessage = '';
+  }
+  hideTheelectricityAllocationAmountValidationMessage() {
+    this.electricityAllocationAmountValidationMessage = '';
+  }
+  hiderentAllocationAmountValidationMessage() {
+    this.rentAllocationAmountValidationMessage = '';
+  }
+  hidehowMuchTimetValidationMessage() {
+    this.howMuchTimetValidationMessage = '';
+  }
+  hidefamilyHealthInsuranceTypeValidationMessage() {
+    this.familyHealthInsuranceTypeValidationMessage = '';
+  }
+  hidemaximumAmountGivenValidationMessage() {
+    this.maximumAmountGivenValidationMessage = '';
+  }
+
+  cashAmountAmountValidationMessage=''
+  vehicleFuelChipFacilityValidationMessage=''
+  electricityAllocationAmountValidationMessage=''
+  rentAllocationAmountValidationMessage=''
+  howMuchTimetValidationMessage=''
+  familyHealthInsuranceTypeValidationMessage=''
+  maximumAmountGivenValidationMessage=''
+
+  public next() {
+    // this.step=this.step+1
+    console.log(this.step)
+
+    if (this.step == 1) {
+      let isValid = true; // Pehle `isValid` ko `true` mein set karein
+
+      if (this.postForm.get('namePrefix').value != 'Prefix' && this.postForm.get('namePrefix').value != null) {
+        this.PrefixValidationMessage = '';
+        console.log("inside the prefix");
+      } else {
+        this.PrefixValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+
+      if (this.postForm.get('firstName').value != '' && this.postForm.get('firstName').value != null) {
+        this.firstNameValidationMessage = '';
+        console.log("inside the first name");
+      } else {
+        this.firstNameValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('lastName').value != '' && this.postForm.get('lastName').value != null) {
+        this.lastNameValidationMessage = '';
+        console.log("inside the last name");
+      } else {
+        this.lastNameValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('email').value != '' && this.postForm.get('email').value != null) {
+        this.emailValidationMessage = '';
+        console.log("inside the last name");
+      } else {
+        this.emailValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('phoneCode').value != 'Code' && this.postForm.get('phoneCode').value != null) {
+        this.phoneCodeValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.phoneCodeValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('personalContactNo').value != '' && this.postForm.get('personalContactNo').value != null) {
+        this.personalContactValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.personalContactValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('dateOfBirth').value != '' && this.postForm.get('dateOfBirth').value != null) {
+        this.dobValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.dobValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('passportSizePhoto').value != '' && this.postForm.get('passportSizePhoto').value != null) {
+        this.passportSizePhotoValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.passportSizePhotoValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('passportNumber').value != '' && this.postForm.get('passportNumber').value != null) {
+        this.passportNumberValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.passportNumberValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('passportScannedCopy').value != '' && this.postForm.get('passportScannedCopy').value != null) {
+        this.passportScanCopyValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.passportScanCopyValidationMessage = 'Fill the required field';
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+      if (this.postForm.get('drivinglicense').value != 'Driving License of UAE' && this.postForm.get('drivinglicense').value != null) {
+
+
+        if (this.postForm.get('drivinglicense').value == 'Yes') {
+          if (this.postForm.get('scannedCopyOfLincense').value != '' && this.postForm.get('scannedCopyOfLincense').value != null) {
+            this.LincenseScanCopyValidationMessage = '';
+            console.log("inside the inside the phone code ");
+          } else {
+            this.LincenseScanCopyValidationMessage = 'Fill the required field';
+            isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+          }
+
+        } else {
+          // isValid = true;
+          this.LincenseScanCopyValidationMessage = ''
+        }
+        // console.log("inside the inside the phone code ");
+      } else {
+        // this.passportScanCopyValidationMessage = 'Fill the required field';
+        this.toastr.error("please first select that u have lincense or not ")
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+
+
+
+
+      if (isValid) {
+        this.step = this.step + 1; // Sirf tabhi `step` ko increment karein jab `isValid` `true` ho
+      }
+    }
+
+    else if (this.step == 2) {
+
+      this.step = this.step + 1
+    }
+    else if (this.step == 3) {
+      let isValid = true;
+      if (this.postForm.get('status').value != '' && this.postForm.get('status').value != null) {
+        this.bgStatusValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.bgStatusValidationMessage = 'Fill the required field';
+
+        isValid = false;
+      }
+
+
+      if (this.postForm.get('status').value == "Done") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('doneBy').value != '' && this.postForm.get('doneBy').value != null) {
+          this.doneByValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.doneByValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.doneByValidationMessage = '';
+
+      }
+      if (this.postForm.get('doneBy').value == "Internal") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('internalConcernedManager').value != '' && this.postForm.get('internalConcernedManager').value != null) {
+          this.internalConcernedManagerValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.internalConcernedManagerValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.internalConcernedManagerValidationMessage = '';
+
+      }
+      if (this.postForm.get('doneBy').value == "External") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('externalConcernedPerson').value != '' && this.postForm.get('externalConcernedPerson').value != null) {
+          this.externalConcernedManagerValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.externalConcernedManagerValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.externalConcernedManagerValidationMessage = '';
+
+      }
+      if (this.postForm.get('doneBy').value == "External") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('externalPost').value != '' && this.postForm.get('externalPost').value != null) {
+          this.externalPostValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.externalPostValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.externalPostValidationMessage = '';
+
+      }
+      if (this.postForm.get('doneBy').value == "External") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('externalCompanyName').value != '' && this.postForm.get('externalCompanyName').value != null) {
+          this.externalCompanyNameValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.externalCompanyNameValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+      } else {
+        this.externalCompanyNameValidationMessage = '';
+
+      }
+      if (this.postForm.get('doneBy').value == "External") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('externalPhoneCode').value != '' && this.postForm.get('externalPhoneCode').value != null) {
+          this.externalPhoneCodeValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.externalPhoneCodeValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+      } else {
+        this.externalPhoneCodeValidationMessage = '';
+
+      }
+      if (this.postForm.get('doneBy').value == "External") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('externalPhoneNo').value != '' && this.postForm.get('externalPhoneNo').value != null) {
+          this.externalPhoneNoValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.externalPhoneNoValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+      } else {
+        this.externalPhoneNoValidationMessage = '';
+
+      }
+
+
+      if (this.postForm.get('status').value == "Pending") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('managerApproval').value != '' && this.postForm.get('managerApproval').value != null) {
+          this.managerApprovalforbgValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.managerApprovalforbgValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.managerApprovalforbgValidationMessage = '';
+
+      }
+      if (this.postForm.get('managerApproval').value == "Approved") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('managerName').value != '' && this.postForm.get('managerName').value != null) {
+          this.managerApprovalNameforbgValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.managerApprovalNameforbgValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.managerApprovalNameforbgValidationMessage = '';
+
+      }
+
+
+
+
+      if (isValid) {
+        this.step = this.step + 1; // Sirf tabhi `step` ko increment karein jab `isValid` `true` ho
+      }
+      // console.log("inside step 2")
+      // this.step = this.step + 1
+    }
+    else if (this.step == 4) {
+      let isValid = true;
+      if (this.postForm.get('criminalRecords').value != '' && this.postForm.get('criminalRecords').value != null) {
+        this.criminalRecordsValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.criminalRecordsValidationMessage = 'Fill the required field';
+
+        isValid = false;
+      }
+
+
+      if (this.postForm.get('criminalRecords').value == "No") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('Declaration').value != '' && this.postForm.get('Declaration').value != null) {
+          this.DeclarationValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.DeclarationValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+      } else {
+        this.DeclarationValidationMessage = '';
+
+      }
+      if (this.postForm.get('criminalRecords').value == "Yes") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('RecordSheet').value != '' && this.postForm.get('RecordSheet').value != null) {
+          this.RecordSheetValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.RecordSheetValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+      } else {
+        this.RecordSheetValidationMessage = '';
+
+      }
+      if (this.postForm.get('punishmentForImprisonmentApproval').value == "Yes") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('approvalsheet').value != '' && this.postForm.get('approvalsheet').value != null) {
+          this.approvalsheetValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.approvalsheetValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+      } else {
+        this.approvalsheetValidationMessage = '';
+
+      }
+
+
+
+
+
+      if (isValid) {
+        this.step = this.step + 1; // Sirf tabhi `step` ko increment karein jab `isValid` `true` ho
+      }
+
+      // console.log("inside step 4")
+      // this.step = this.step + 1
+
+
+    }
+    else if (this.step == 5) {
+      let isValid = true;
+      // if (this.postForm.get('houseRentAllowance').value == true && this.postForm.get('houseRentAllowance').value != null) {
+      //  console.log(this.postForm.get('houseRentAllowance').value)
+      if (this.postForm.get('houseRentAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        console.log(this.postForm.get('houseRentAmount').value)
+        if (this.postForm.get('houseRentAmount').value != '' && this.postForm.get('houseRentAmount').value != null) {
+          this.HouseRentAmountValidationMessage = ''
+          console.log("inside the if block of House Rent Amount")
+        } else {
+          this.HouseRentAmountValidationMessage = 'Fill the required field'
+          console.log(this.HouseRentAmountValidationMessage)
+          this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+
+
+        }
+
+      } else {
+        this.HouseRentAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('foodAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('foodAllowanceAmount').value != '' && this.postForm.get('foodAllowanceAmount').value != null) {
+          this.FoodAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.FoodAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.HouseRentAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('foodAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('foodAllowanceAmount').value != '' && this.postForm.get('foodAllowanceAmount').value != null) {
+          this.FoodAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.FoodAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+
+
+        }
+
+      } else {
+        this.HouseRentAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('vehicleAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('vehicleAllowanceAmount').value != '' && this.postForm.get('vehicleAllowanceAmount').value != null) {
+          this.VehicleAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.VehicleAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.VehicleAllowanceAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('uniformAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('uniformAllowanceAmount').value != '' && this.postForm.get('uniformAllowanceAmount').value != null) {
+          this.UniformAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.UniformAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.UniformAllowanceAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('travellingAllowances').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('travellingAllowancesAmount').value != '' && this.postForm.get('travellingAllowancesAmount').value != null) {
+          this.TravellingAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.TravellingAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.TravellingAllowanceAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('educationalAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('educationalAllowanceAmount').value != '' && this.postForm.get('educationalAllowanceAmount').value != null) {
+          this.EducationAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.EducationAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.EducationAllowanceAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('otherAllowance').value == true) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('otherAllowanceAmount').value != '' && this.postForm.get('otherAllowanceAmount').value != null) {
+          this.OtherAllowanceAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        } else {
+          this.OtherAllowanceAmountValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.OtherAllowanceAmountValidationMessage = '';
+
+      }
+
+
+      if (this.postForm.get('vehicle').value != '' && this.postForm.get('vehicle').value != null) {
+        this.VehicleIssuedValidationMessage = '';
+        console.log("inside the inside the phone code ");
+      } else {
+        this.VehicleIssuedValidationMessage = 'Fill the required field';
+        console.log("inside the inside the vehicle else part ")
+        isValid = false; // Agar field galat hai, to `isValid` ko `false` mein set karein
+      }
+
+
+      if (this.postForm.get('vehicle').value == "Yes") {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('vehicleNumber').value != '' && this.postForm.get('vehicleNumber').value != null) {
+          this.vehicleNumberAmountValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        }
+
+        else {
+          this.vehicleNumberAmountValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.vehicleNumberAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('vehicleNumber').value != "" && this.postForm.get('vehicleNumber').value != null) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('vehicleModelName').value != '' && this.postForm.get('vehicleModelName').value != null) {
+          this.vehicleModelNameValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        }
+
+        else {
+          this.vehicleModelNameValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.vehicleModelNameValidationMessage = '';
+
+      }
+      if (this.postForm.get('vehicleModelName').value != "" && this.postForm.get('vehicleModelName').value != null) {
+        // this.HouseRentAmountValidationMessage = '';
+        if (this.postForm.get('vehicleModelYear').value != '' && this.postForm.get('vehicleModelYear').value != null) {
+          this.vehicleModelYearValidationMessage = ''
+          console.log("inside the if block of food Allowance")
+        }
+
+        else {
+          this.vehicleModelYearValidationMessage = 'Fill the required field'
+          isValid = false
+        }
+
+      } else {
+        this.vehicleModelYearValidationMessage = '';
+
+      }
+
+
+
+
+
+
+
+      if (isValid) {
+        this.step = this.step + 1; // Sirf tabhi `step` ko increment karein jab `isValid` `true` ho
+      }
+      // console.log("inside step 2", this.step)
+      // this.step = this.step + 1
+    }
+    else if (this.step == 6){
+      let isValid = true;
+      // if (this.postForm.get('houseRentAllowance').value == true && this.postForm.get('houseRentAllowance').value != null) {
+      //  console.log(this.postForm.get('houseRentAllowance').value)
+      if (this.postForm.get('vehicleFuelCashFacility').value == "Cash") {
+        // this.HouseRentAmountValidationMessage = '';
+        console.log(this.postForm.get('houseRentAmount').value)
+        if (this.postForm.get('cashAmount').value != '' && this.postForm.get('cashAmount').value != null) {
+          this.cashAmountAmountValidationMessage = ''
+          console.log("inside the if block of House Rent Amount")
+        } else {
+          this.cashAmountAmountValidationMessage = 'Fill the required field'
+          console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+
+
+        }
+
+      } else {
+        this.cashAmountAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('vehicleFuelCashFacility').value == "Chip") {
+        
+        if (this.postForm.get('vehicleFuelChipFacility').value != '' && this.postForm.get('vehicleFuelChipFacility').value != null) {
+          this.vehicleFuelChipFacilityValidationMessage = ''
+          console.log("inside the if block of House Rent Amount")
+        } else {
+          this.vehicleFuelChipFacilityValidationMessage = 'Fill the required field'
+          // console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+
+
+        }
+
+      } else {
+        this.vehicleFuelChipFacilityValidationMessage = '';
+
+      }
+      if (this.postForm.get('electricityAllocationYesOrNo').value == "Yes") {
+        
+        if (this.postForm.get('electricityAllocationAmount').value != '' && this.postForm.get('electricityAllocationAmount').value != null) {
+          this.electricityAllocationAmountValidationMessage = ''
+          console.log("inside the if block of House Rent Amount")
+        } else {
+          this.electricityAllocationAmountValidationMessage = 'Fill the required field'
+          // console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+        }
+
+      } else {
+        this.electricityAllocationAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('rentAllocationYesOrNo').value == "Yes") {
+        
+        if (this.postForm.get('rentAllocationAmount').value != '' && this.postForm.get('rentAllocationAmount').value != null) {
+          this.rentAllocationAmountValidationMessage = ''
+          console.log("inside the if block of House Rent Amount")
+        } else {
+          this.rentAllocationAmountValidationMessage = 'Fill the required field'
+          // console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+        }
+
+      } else {
+        this.rentAllocationAmountValidationMessage = '';
+
+      }
+      if (this.postForm.get('flightFacilities').value == "Yes") {
+        
+        if (this.postForm.get('howMuchTime').value != '' && this.postForm.get('howMuchTime').value != null) {
+          this.howMuchTimetValidationMessage = ''
+          console.log("inside the if block of House Rent Amount")
+        } else {
+          this.howMuchTimetValidationMessage = 'Fill the required field'
+          // console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+        }
+
+      } else {
+        this.howMuchTimetValidationMessage = '';
+
+      }
+      if (this.postForm.get('familyHealthInsuranceGivenOrNot').value == "Yes") {
+        
+        if (this.postForm.get('familyHealthInsuranceType').value != '' && this.postForm.get('familyHealthInsuranceType').value != null) {
+          this.familyHealthInsuranceTypeValidationMessage = ''
+          // console.log("inside the if block of House Rent Amount")
+        } else {
+          this.familyHealthInsuranceTypeValidationMessage = 'Fill the required field'
+          // console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+        }
+
+      } else {
+        this.familyHealthInsuranceTypeValidationMessage = '';
+
+      }
+      if (this.postForm.get('healthInsuranceCoverage').value == "Yes") {
+        
+        if (this.postForm.get('maximumAmountGiven').value != '' && this.postForm.get('maximumAmountGiven').value != null) {
+          this.maximumAmountGivenValidationMessage = ''
+          // console.log("inside the if block of House Rent Amount")
+        } else {
+          this.maximumAmountGivenValidationMessage = 'Fill the required field'
+          // console.log(this.HouseRentAmountValidationMessage)
+          // this.toastr.error(this.HouseRentAmountValidationMessage, "House Rent Amount")
+          isValid = false
+        }
+
+      } else {
+        this.maximumAmountGivenValidationMessage = '';
+
+      }
+
+
+
+      if (isValid) {
+        this.step = this.step + 1; // Sirf tabhi `step` ko increment karein jab `isValid` `true` ho
+      }
+      // this.step=this.step+1
+
+    }
+    // else if (this.step == 7){
+    //   this.step=this.step+1
+
+    // }
+
+  }
+
+
+
+  public previous() {
+    this.step = this.step - 1;
+  }
 
   //method for submitting the form value
   public onSubmit() {
+
+
+
+
+
+
     // this.step=this.step + 1;
     // console.log(this.postForm.value);
-    
-    console.log(this.postForm.value.VisaScannedCopyOfID)
+
+    // console.log(this.postForm.value.VisaScannedCopyOfID)
     if (this.postForm.valid) {
       // let role={
       //   role: [this.postForm.value.role]
       // }
       let formDetail = {
-        filledForm:false,
-        onboardHrApprovalStatus:this.postForm.value.onboardHrApprovalStatus,
+        filledForm: false,
+        onboardHrApprovalStatus: this.postForm.value.onboardHrApprovalStatus,
         namePrefix: this.postForm.value.namePrefix,
         firstName: this.postForm.value.firstName,
         middleName: this.postForm.value.middleName,
@@ -949,7 +2123,7 @@ public previous(){
 
         license: {
           drivinglicense: this.postForm.value.drivinglicense,
-          licenseType:this.postForm.value.licenseType,
+          licenseType: this.postForm.value.licenseType,
           ownvehicle: this.postForm.value.ownvehicle,
 
         },
@@ -972,8 +2146,8 @@ public previous(){
           workVisaEmirateId: this.postForm.value.workVisaEmirateId,
           categoryOfVisa: this.postForm.value.categoryOfVisa,
           siGlobalWorkVisaCompany: this.postForm.value.siGlobalWorkVisaCompany,
-          visaIssueyDate: this.datePipe.transform(this.postForm.value.visaIssueyDate,'dd-MM-yyyy')  ,
-          visaExpiryDate:this.datePipe.transform(this.postForm.value.visaExpiryDate, 'dd-MM-yyyy'),
+          visaIssueyDate: this.datePipe.transform(this.postForm.value.visaIssueyDate, 'dd-MM-yyyy'),
+          visaExpiryDate: this.datePipe.transform(this.postForm.value.visaExpiryDate, 'dd-MM-yyyy'),
 
         },
         // professionalQualifications: [{
@@ -985,8 +2159,8 @@ public previous(){
         //   yearOfQualification: this.postForm.value.yearOfQualification,
 
         // }],
-        professionalQualifications: this.professionalQualifications.value ,
-        empAchievements:this.empAchievements.value,
+        professionalQualifications: this.professionalQualifications.value,
+        empAchievements: this.empAchievements.value,
 
         oldEmployee: [{
 
@@ -1004,12 +2178,12 @@ public previous(){
           previousHRPhoneCode: this.postForm.value.previousHRPhoneCode,
           previousHRContact: this.postForm.value.previousHRContact,
           // achievementsRewards: this.postForm.value.achievementsRewards,
-         
-         
-         
 
-         
-         
+
+
+
+
+
           lastWithdrawnSalary: this.postForm.value.lastWithdrawnSalary,
 
         }],
@@ -1052,11 +2226,11 @@ public previous(){
           criminalRecords: this.postForm.value.criminalRecords,
           punishmentForImprisonmentApproval: this.postForm.value.punishmentForImprisonmentApproval,
         },
-        othersQualifications: this.othersQualifications.value ,
-        
+        othersQualifications: this.othersQualifications.value,
 
-        department:{
-          departmentId:this.postForm.value.jobdepartment
+
+        department: {
+          departmentId: this.postForm.value.jobdepartment
 
         },
         jobDetails: [{
@@ -1092,7 +2266,7 @@ public previous(){
           isVehicleNewOrPreowned: this.postForm.value.isVehicleNewOrPreowned,
           cashOrChipFacility: this.postForm.value.vehicleFuelCashFacility,
           chipNumber: this.postForm.value.vehicleFuelChipFacility,
-          cashAmount:this.postForm.value.cashAmount,
+          cashAmount: this.postForm.value.cashAmount,
           // // accommodation
           accommodationYesOrNo: this.postForm.value.accommodationYesOrNo,
           isShredOrSeparate: this.postForm.value.isShredOrSeparate,
@@ -1116,23 +2290,23 @@ public previous(){
           joiningDate: this.postForm.value.joiningDate,
 
           punchingMachineYesOrNo: this.postForm.value.punchingMachineYesOrNo,
-          referredBy:this.postForm.value.ReferedBy,
-          byWhom:this.postForm.value.ReferenceName,
+          referredBy: this.postForm.value.ReferedBy,
+          byWhom: this.postForm.value.ReferenceName,
         }]
       }
 
-      let currentDesignation={
-        levelId:this.levelId,
-        startDate:this.postForm.value.joiningDate,
-        locationId:[+this.postForm.value.postedLocation],
-        designationId:[+this.postForm.value.designationId],
-        taskId:[]
+      let currentDesignation = {
+        levelId: this.levelId,
+        startDate: this.postForm.value.joiningDate,
+        locationId: [+this.postForm.value.postedLocation],
+        designationId: [+this.postForm.value.designationId],
+        taskId: []
       }
-      
+
       const formFileData = new FormData();
       formFileData.append('PersonalInfo', JSON.stringify(formDetail))
-    
-      formFileData.append('CurrentDesignationandAdditionalTask',JSON.stringify(currentDesignation))
+
+      formFileData.append('CurrentDesignationandAdditionalTask', JSON.stringify(currentDesignation))
       // console
       formFileData.append('passportSizePhoto', this.postForm.value.passportSizePhoto);
       formFileData.append("passportScan", this.postForm.value.passportScannedCopy);
@@ -1147,27 +2321,44 @@ public previous(){
       formFileData.append("graduationDocumentScan", this.postForm.value.ScannedCopyOfGraduation)
       formFileData.append("postGraduationDocumentScan", this.postForm.value.ScannedCopyOfPostGraduation)
       formFileData.append("diplomaDocumentScan", this.postForm.value.ScannedCopyOfDiploma)
-      this.array.forEach((element:any)=> { if(element !==undefined){
-        formFileData.append('othersDocumentScan',element)
-      }  })
+      this.array.forEach((element: any) => {
+        if (element !== undefined) {
+          console.log(element)
+          formFileData.append('othersDocumentScan', element)
+        }
+      })
 
-    
+      //update one
+      // this.array.forEach((element: any) => {
+      //   if (element !== undefined && element !== null) {
+      //     formFileData.append('othersDocumentScan', element);
+      //   }
+      // });
+
+
+
       // const formFileData_2=new FormData();
       // formFileData.append('scannedCopyOfOther',this.postForm.value.otherQualifications)
-      this.professionalArray.forEach((e:any)=>{if (e !==undefined){
-        formFileData.append('degreeScan',e)
-      }})
+      this.professionalArray.forEach((e: any) => {
+        if (e !== undefined) {
+          formFileData.append('degreeScan', e)
+        }
+      })
       // formFileData.append("degreeScan", this.postForm.value.ScannedCopyOfCourseCompleted)
-      this.achivementArray.forEach((e:any)=>{if(e!==undefined){
-        formFileData.append('achievementsRewardsDocs',e)
-      }})
+      this.achivementArray.forEach((e: any) => {
+
+        if (e !== undefined) {
+          formFileData.append('achievementsRewardsDocs', e)
+
+        }
+      })
       formFileData.append("achievementsRewardsDocs", this.postForm.value.ScanCopyOfAchivements)
       formFileData.append("payslipScan", this.postForm.value.SalaryScannedCopy)
       formFileData.append("recordsheet", this.postForm.value.RecordSheet)
       formFileData.append("declarationRequired", this.postForm.value.Declaration)
       formFileData.append("CertificateUploadedForOutsource", this.postForm.value.CertificateUploadedForOutsource)
       formFileData.append("PaidTrainingDocumentProof", this.postForm.value.PaidTrainingDocumentProof)
-      formFileData.forEach((e)=>{
+      formFileData.forEach((e) => {
         console.log(e)
       })
 
@@ -1178,12 +2369,12 @@ public previous(){
         // alert("Successfully Posted OnBoard");
 
         this.toastr.info("Successfully Posted OnBoard");
-             }, (errorResponse: any) => {
+      }, (errorResponse: any) => {
         // console.log(errorResponse.error.message)
         // alert(errorResponse.error.message)
         this.toastr.error(errorResponse.error.message);
       })
-    }else{
+    } else {
       // alert("field is required")
       this.toastr.error("Field is required");
 
@@ -1191,19 +2382,19 @@ public previous(){
     }
   }
 
-  public onDesignation(event:any){
-    const id =event.target.value ;
-    this.levelId=id;
+  public onDesignation(event: any) {
+    const id = event.target.value;
+    this.levelId = id;
     console.log(id)
-    this.apiService.getDesignationByLevelId(id).subscribe((successResponse)=>{
+    this.apiService.getDesignationByLevelId(id).subscribe((successResponse) => {
       // console.log(successResponse)
-      this.designationByLevelId=successResponse
+      this.designationByLevelId = successResponse
     },
-    (errorResponse) =>{
-      // console.log(errorResponse.error.text)
-      // alert(errorResponse.error.text)
-      this.toastr.error(errorResponse.error.text);
-    })
+      (errorResponse) => {
+        // console.log(errorResponse.error.text)
+        // alert(errorResponse.error.text)
+        this.toastr.error(errorResponse.error.text);
+      })
   }
 }
 

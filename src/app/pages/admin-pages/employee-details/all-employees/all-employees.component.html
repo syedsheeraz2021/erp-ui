@@ -139,14 +139,14 @@
                       #searchInput
                     />
                     <div class="input-group-append">
-                      <select class="btn btn-sm btn-outline-primary">
+                      <select class="btn btn-sm btn-outline-primary" [(ngModel)]="selectedOption">
                         <option value="email" selected>Email</option>
                         <option value="id">ID</option>
                       </select>
                       <button
                         class="btn btn-sm btn-primary"
                         type="button"
-                        (click)="searchEmpByEmail(searchInput.value)"
+                        (click)="searchEmpByEmail(selectedOption,searchInput.value)"
                       >
                         Search
                       </button>
@@ -193,7 +193,7 @@
 
                     <td *ngIf="employee.status == 'Active'">
                       <button
-                        class="btn btn-sm btn-danger w-75"
+                        class="btn btn-sm btn-danger "
                         (click)="delEmployee(employee.email)"
                       >
                         Deactivate
@@ -209,7 +209,7 @@
                     </td> -->
                     
                       <td>
-                        <button class="btn btn-primary" style="width: 100px !important ; text-align: center;">
+                        <button class="btn btn-sm btn-primary" style="width: 100px !important ; text-align: center;">
                             {{  employee.onboardHrApprovalStatus == "pending" ? 'Approved' : 'Edit' }}
                         </button>
                     </td>
